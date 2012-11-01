@@ -1,0 +1,6 @@
+.npmignore
+.editorconfig
+.gitattributes
+.travis.yml
+test
+Grunfile.js
