@@ -31,7 +31,7 @@
     "grunt-lib-contrib": "~0.3.0",
     "filesize": "~1.7.2",
     "optipng": "git://github.com/yeoman/node-optipng.git#ce3de4312e",
-    "jpegtran": "git://github.com/yeoman/node-jpegtran.git#798e4266ba"
+    "jpegtran": "git://github.com/yeoman/node-jpegtran.git#f3364c3726"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
