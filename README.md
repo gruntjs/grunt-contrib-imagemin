@@ -33,7 +33,7 @@ Minify images using [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](htt
 
 ### Options
 
-#### optimizationLevel (png only)
+#### optimizationLevel *(png only)*
 
 Type: `Number`  
 Default: `0`
@@ -53,7 +53,7 @@ Level and trials:
 7. 240 trials
 
 
-#### progressive (jpeg only)
+#### progressive *(jpg only)*
 
 Type: `Boolean`  
 Default: `false`
@@ -97,4 +97,4 @@ grunt.registerTask('default', ['imagemin']);
 --
 Task submitted by <a href="http://github.com/sindresorhus">Sindre Sorhus</a>.
 
-*Generated on Tue Nov 06 2012 16:06:10.*
+*Generated on Fri Nov 23 2012 21:03:55.*
