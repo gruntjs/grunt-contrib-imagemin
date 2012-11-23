@@ -9,7 +9,6 @@
 'use strict';
 
 module.exports = function(grunt) {
-  // Project configuration.
   grunt.initConfig({
     jshint: {
       all: [
@@ -21,40 +20,33 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       }
     },
-
-    // Before generating any new files, remove any previously-created files.
     clean: {
       test: ['tmp']
     },
-
-    // Configuration to be run (and then tested).
     imagemin: {
-      compile: {
+      dist: {
         files: {
-          'tmp/': ['test/fixtures/']
+          'tmp/test.png': 'test/fixtures/test.png',
+          'tmp/test.jpg': 'test/fixtures/test.jpg'
         }
       }
     },
-
-    // Unit tests.
     nodeunit: {
       tasks: ['test/*_test.js']
     }
   });
 
-  // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
-  // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-internal');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['imagemin', 'nodeunit', 'clean']);
+  grunt.registerTask('mkdir', function(dir) {
+    require('fs').mkdirSync(dir);
+  });
 
-  // By default, lint and run all tests.
+  grunt.registerTask('test', ['clean' ,'mkdir:tmp', 'imagemin', 'nodeunit', 'clean']);
   grunt.registerTask('default', ['test', 'build-contrib']);
 };

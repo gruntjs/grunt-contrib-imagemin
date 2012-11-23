@@ -20,7 +20,7 @@
       "url": "https://github.com/gruntjs/grunt-contrib-imagemin/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "grunt.js",
+  "main": "Gruntfile.js",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -28,7 +28,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt-lib-contrib": "~0.3.0"
+    "grunt-lib-contrib": "~0.3.0",
+    "filesize": "~1.7.2"
   },
   "devDependencies": {
     "grunt": "~0.4.0a",
