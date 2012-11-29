@@ -34,12 +34,22 @@ module.exports = function(grunt) {
       jpegtranArgs.push('-progressive');
     }
 
-    function processed(err, stdout, stderr) {
+    function processed(err, result, code) {
+      var saved, savedMsg;
+
       if (err) {
         grunt.warn(err);
       }
-      var saved = fs.statSync(src).size - fs.statSync(dest).size;
-      grunt.log.writeln('✔ '.green + src + (' (saved ' + filesize(saved) + ')').grey);
+
+      saved = fs.statSync(src).size - fs.statSync(dest).size;
+
+      if (result.stderr.indexOf('already optimized') !== -1 || saved < 10) {
+        savedMsg = 'already optimized';
+      } else {
+        savedMsg = 'saved ' + filesize(saved);
+      }
+
+      grunt.log.writeln('✔ '.green + src + (' (' + savedMsg + ')').grey);
       cb();
     }
 
