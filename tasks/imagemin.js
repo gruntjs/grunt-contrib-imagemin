@@ -26,6 +26,9 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeflags(options, 'Options');
 
+    // Create the dest dir, since these tools can't handle do it
+    grunt.file.mkdir(path.dirname(dest));
+
     if (typeof options.optimizationLevel === 'number') {
       optipngArgs.push('-o', options.optimizationLevel);
     }
