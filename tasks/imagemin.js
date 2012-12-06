@@ -13,8 +13,8 @@ module.exports = function(grunt) {
   var fs = require('fs');
   var childProcess = require('child_process');
   var filesize = require('filesize');
-  var optipngPath = require('optipng').path;
-  var jpegtranPath = require('jpegtran').path;
+  var optipngPath = require('optipng-bin').path;
+  var jpegtranPath = require('jpegtran-bin').path;
   var optipngArgs = ['-strip', 'all', '-clobber'];
   var jpegtranArgs = ['-copy', 'none', '-optimize'];
 
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeflags(options, 'Options');
 
-    // Create the dest dir, since these tools can't handle do it
+    // Create the dest dir, since these tools can't handle it
     grunt.file.mkdir(path.dirname(dest));
 
     if (typeof options.optimizationLevel === 'number') {
