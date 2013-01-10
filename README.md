@@ -82,7 +82,13 @@ grunt.initConfig({
         'dev/img.png': 'src/img.png'
         'dev/img.jpg': 'src/img.jpg'
       }
+    },
+    images: {
+      files: {
+        'compressed/': ['src/img/*.jpg','src/img/*.png']
+      }
     }
+
   }
 });
 
