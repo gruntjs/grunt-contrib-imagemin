@@ -44,8 +44,6 @@ module.exports = function (grunt) {
 
 
     function optimize(src, dest, next) {
-
-
       function processed(err, result, code) {
         var saved, savedMsg;
 
