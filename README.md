@@ -81,7 +81,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
- * 2013-01-10   v0.1.1rc5   Updating to work with grunt v0.4.0rc5. Switching to this.files api.
+ * 2013-01-10   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
  * 2012-11-01   v0.1.0   Initial release.
 
 ---
