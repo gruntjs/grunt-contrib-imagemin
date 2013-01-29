@@ -47,6 +47,6 @@ module.exports = function(grunt) {
     require('fs').mkdirSync(dir);
   });
 
-  grunt.registerTask('test', ['clean' ,'mkdir:tmp', 'imagemin', 'nodeunit', 'clean']);
+  grunt.registerTask('test', ['clean', 'mkdir:tmp', 'imagemin', 'nodeunit', 'clean']);
   grunt.registerTask('default', ['test', 'build-contrib']);
 };

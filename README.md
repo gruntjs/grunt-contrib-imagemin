@@ -2,31 +2,20 @@
 
 > Minify PNG and JPEG images
 
-_Note that this plugin has not yet been released, and only works with the latest bleeding-edge, in-development version of grunt. See the [When will I be able to use in-development feature 'X'?](https://github.com/gruntjs/grunt/blob/devel/docs/faq.md#when-will-i-be-able-to-use-in-development-feature-x) FAQ entry for more information._
 
 ## Getting Started
-_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
+If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
-
-```bash
+```shell
 npm install grunt-contrib-imagemin --save-dev
 ```
 
-Once that's done, add this line to your project's Gruntfile:
-
-```js
-grunt.loadNpmTasks('grunt-contrib-imagemin');
-```
-
-If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
-
 [grunt]: http://gruntjs.com/
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
-[package.json]: https://npmjs.org/doc/json.html
 
 
-## The imagemin task
+## Imagemin task
+_Run this task with the `grunt imagemin` command._
 
 Minify images using [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](http://jpegclub.org/jpegtran/).
 
@@ -92,9 +81,11 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
- * 2012-11-01 - v0.1.0 - Initial release.
+ * 2013-01-10   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
+ * 2012-11-01   v0.1.0   Initial release.
 
---
-Task submitted by <a href="http://github.com/sindresorhus">Sindre Sorhus</a>.
+---
 
-*Generated on Fri Nov 23 2012 21:03:55.*
+Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
+
+*This file was generated on Tue Jan 29 2013 16:04:54.*
