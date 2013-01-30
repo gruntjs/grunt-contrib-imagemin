@@ -1,5 +1,5 @@
 v0.1.1rc7:
-  date: 2013-01-29
+  date: 2013-01-30
   changes:
     - Updating to work with grunt v0.4.0rc7.
     - Switching to this.files api.

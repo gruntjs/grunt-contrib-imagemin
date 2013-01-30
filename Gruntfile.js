@@ -8,7 +8,7 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.initConfig({
     jshint: {
       all: [
@@ -43,10 +43,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-internal');
 
-  grunt.registerTask('mkdir', function(dir) {
-    require('fs').mkdirSync(dir);
-  });
+  grunt.registerTask('mkdir', grunt.file.mkdir);
 
-  grunt.registerTask('test', ['clean', 'mkdir:tmp', 'imagemin', 'nodeunit', 'clean']);
+  grunt.registerTask('test', [
+    'clean',
+    'mkdir:tmp',
+    'imagemin',
+    'nodeunit',
+    'clean'
+  ]);
+
   grunt.registerTask('default', ['test', 'build-contrib']);
 };

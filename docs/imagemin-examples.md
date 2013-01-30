@@ -8,7 +8,7 @@ grunt.initConfig({
         optimizationLevel: 3
       },
       files: {                         // Dictionary of files
-        'dist/img.png': 'src/img.png'  // 'destination': 'source'
+        'dist/img.png': 'src/img.png', // 'destination': 'source'
         'dist/img.jpg': 'src/img.jpg'
       }
     },
@@ -17,7 +17,7 @@ grunt.initConfig({
         optimizationLevel: 0
       },
       files: {
-        'dev/img.png': 'src/img.png'
+        'dev/img.png': 'src/img.png',
         'dev/img.jpg': 'src/img.jpg'
       }
     }

@@ -1,10 +1,9 @@
 'use strict';
-
 var grunt = require('grunt');
 var fs = require('fs');
 
 exports.htmlmin = {
-  minifyPng: function(test) {
+  minifyPng: function (test) {
     test.expect(1);
 
     var actual = fs.statSync('tmp/test.png').size;
@@ -13,7 +12,7 @@ exports.htmlmin = {
 
     test.done();
   },
-  minifyJpg: function(test) {
+  minifyJpg: function (test) {
     test.expect(1);
 
     var actual = fs.statSync('tmp/test.jpg').size;

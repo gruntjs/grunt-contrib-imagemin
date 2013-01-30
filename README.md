@@ -19,7 +19,6 @@ _Run this task with the `grunt imagemin` command._
 
 Minify images using [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](http://jpegclub.org/jpegtran/).
 
-
 ### Options
 
 #### optimizationLevel *(png only)*
@@ -81,11 +80,11 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
- * 2013-01-10   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
+ * 2013-01-30   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
  * 2012-11-01   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Tue Jan 29 2013 16:04:54.*
+*This file was generated on Wed Jan 30 2013 01:41:18.*

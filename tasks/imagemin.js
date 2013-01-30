@@ -67,13 +67,13 @@ module.exports = function (grunt) {
 
             if (path.extname(src) === '.png') {
                 grunt.util.spawn({
-                    cmd:optipngPath,
-                    args:optipngArgs.concat(['-out', dest, src])
+                    cmd: optipngPath,
+                    args: optipngArgs.concat(['-out', dest, src])
                 }, processed);
             } else if (['.jpg', '.jpeg'].indexOf(path.extname(src)) !== -1) {
                 grunt.util.spawn({
-                    cmd:jpegtranPath,
-                    args:jpegtranArgs.concat(['-outfile', dest, src])
+                    cmd: jpegtranPath,
+                    args: jpegtranArgs.concat(['-outfile', dest, src])
                 }, processed);
             } else {
                 next();
