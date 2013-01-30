@@ -1,3 +1,7 @@
+v0.1.1rc8:
+  date: 2013-01-30
+  changes:
+    - Fix task not creating destination folders
 v0.1.1rc7:
   date: 2013-01-30
   changes:

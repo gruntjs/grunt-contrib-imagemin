@@ -51,8 +51,6 @@ module.exports = function (grunt) {
                     grunt.log.writeln(err);
                 }
 
-                grunt.file.mkdir(path.dirname(dest));
-
                 saved = fs.statSync(src).size - fs.statSync(dest).size;
 
                 if (result.stderr.indexOf('already optimized') !== -1 || saved < 10) {
@@ -64,6 +62,8 @@ module.exports = function (grunt) {
                 grunt.log.writeln('✔ '.green + src + (' (' + savedMsg + ')').grey);
                 next();
             }
+
+            grunt.file.mkdir(path.dirname(dest));
 
             if (path.extname(src) === '.png') {
                 grunt.util.spawn({

@@ -80,6 +80,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2013-01-30   v0.1.1rc8   Fix task not creating destination folders
  * 2013-01-30   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
  * 2012-11-01   v0.1.0   Initial release.
 
@@ -87,4 +88,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Wed Jan 30 2013 01:41:18.*
+*This file was generated on Wed Jan 30 2013 15:49:26.*
