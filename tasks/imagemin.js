@@ -44,6 +44,8 @@ module.exports = function (grunt) {
 
 
         function optimize(src, dest, next) {
+            var originalSize = fs.statSync(src).size;
+            
             function processed(err, result, code) {
                 var saved, savedMsg;
 
@@ -51,7 +53,7 @@ module.exports = function (grunt) {
                     grunt.log.writeln(err);
                 }
 
-                saved = fs.statSync(src).size - fs.statSync(dest).size;
+                saved = originalSize - fs.statSync(dest).size;
 
                 if (result.stderr.indexOf('already optimized') !== -1 || saved < 10) {
                     savedMsg = 'already optimized';
