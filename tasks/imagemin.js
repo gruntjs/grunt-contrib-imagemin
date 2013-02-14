@@ -26,7 +26,7 @@ module.exports = function (grunt) {
             optipngArgs.push('-o', options.optimizationLevel);
         }
 
-        if (typeof options.progressive === 'number') {
+        if (options.progressive === true) {
             jpegtranArgs.push('-progressive');
         }
 
