@@ -3,22 +3,23 @@
 > Minify PNG and JPEG images
 
 
+
 ## Getting Started
-If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-contrib-imagemin --save-dev
 ```
 
-[grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+
 
 
 ## Imagemin task
 _Run this task with the `grunt imagemin` command._
 
-Minify images using [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](http://jpegclub.org/jpegtran/).
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
+Minify images using [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](http://jpegclub.org/jpegtran/).
 ### Options
 
 #### optimizationLevel *(png only)*
@@ -80,12 +81,13 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
- * 2013-01-30   v0.1.1rc8   Fix task not creating destination folders
- * 2013-01-30   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
- * 2012-11-01   v0.1.0   Initial release.
+ * 2013-02-14   v0.1.1   First official release for Grunt 0.4.0.
+ * 2013-01-29   v0.1.1rc8   Fix task not creating destination folders
+ * 2013-01-29   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
+ * 2012-10-31   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Wed Jan 30 2013 15:49:26.*
+*This file was generated on Fri Feb 15 2013 18:42:45.*
