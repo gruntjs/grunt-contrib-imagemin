@@ -28,7 +28,6 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt-lib-contrib": "~0.3.0",
     "filesize": "~1.7.2",
     "jpegtran-bin": "~0.1.0",
     "optipng-bin": "~0.1.0"
