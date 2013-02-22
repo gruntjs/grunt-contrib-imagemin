@@ -2,7 +2,7 @@
 var grunt = require('grunt');
 var fs = require('fs');
 
-exports.htmlmin = {
+exports.imagemin = {
   minifyPng: function (test) {
     test.expect(1);
 

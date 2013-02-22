@@ -18,7 +18,6 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('imagemin', 'Minify PNG and JPEG images', function () {
         var options = this.options();
-
         var optipngArgs = ['-strip', 'all', '-clobber'];
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
 
@@ -42,10 +41,10 @@ module.exports = function (grunt) {
             });
         }.bind(this), this.async());
 
-
         function optimize(src, dest, next) {
+            var cp;
             var originalSize = fs.statSync(src).size;
-            
+
             function processed(err, result, code) {
                 var saved, savedMsg;
 
@@ -68,17 +67,22 @@ module.exports = function (grunt) {
             grunt.file.mkdir(path.dirname(dest));
 
             if (path.extname(src) === '.png') {
-                grunt.util.spawn({
+                cp = grunt.util.spawn({
                     cmd: optipngPath,
                     args: optipngArgs.concat(['-out', dest, src])
                 }, processed);
             } else if (['.jpg', '.jpeg'].indexOf(path.extname(src)) !== -1) {
-                grunt.util.spawn({
+                cp = grunt.util.spawn({
                     cmd: jpegtranPath,
                     args: jpegtranArgs.concat(['-outfile', dest, src])
                 }, processed);
             } else {
                 next();
+            }
+
+            if (grunt.option('verbose')) {
+                cp.stdout.pipe(process.stdout);
+                cp.stderr.pipe(process.stderr);
             }
         }
     });
