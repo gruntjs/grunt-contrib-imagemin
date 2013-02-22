@@ -1,3 +1,8 @@
+v0.1.2:
+  date: 2013-02-22
+  changes:
+    - Fix OptiPNG not working on some systems.
+    - Prevent OptiPNG from producing .bak files.
 v0.1.1:
   date: 2013-02-15
   changes:

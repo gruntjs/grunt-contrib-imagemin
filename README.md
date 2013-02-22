@@ -89,13 +89,14 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
- * 2013-02-14   v0.1.1   First official release for Grunt 0.4.0.
- * 2013-01-29   v0.1.1rc8   Fix task not creating destination folders
- * 2013-01-29   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
- * 2012-10-31   v0.1.0   Initial release.
+ * 2013-02-22   v0.1.2   Fix OptiPNG not working on some systems. Prevent OptiPNG from producing .bak files.
+ * 2013-02-15   v0.1.1   First official release for Grunt 0.4.0.
+ * 2013-01-30   v0.1.1rc8   Fix task not creating destination folders
+ * 2013-01-30   v0.1.1rc7   Updating to work with grunt v0.4.0rc7. Switching to this.files api.
+ * 2012-11-01   v0.1.0   Initial release.
 
 ---
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Wed Feb 20 2013 12:35:50.*
+*This file was generated on Fri Feb 22 2013 20:56:24.*
