@@ -67,6 +67,12 @@ module.exports = function (grunt) {
             grunt.file.mkdir(path.dirname(dest));
 
             if (path.extname(src) === '.png') {
+                // OptiPNG can't overwrite without creating a backup file
+                // https://sourceforge.net/tracker/?func=detail&aid=3607244&group_id=151404&atid=780913
+                if (grunt.file.exists(dest)) {
+                    grunt.file.delete(dest);
+                }
+
                 cp = grunt.util.spawn({
                     cmd: optipngPath,
                     args: optipngArgs.concat(['-out', dest, src])
