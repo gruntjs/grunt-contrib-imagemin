@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('imagemin', 'Minify PNG and JPEG images', function () {
         var options = this.options();
-        var optipngArgs = ['-strip', 'all', '-force'];
+        var optipngArgs = ['-strip', 'all'];
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
 
         if (typeof options.optimizationLevel === 'number') {
