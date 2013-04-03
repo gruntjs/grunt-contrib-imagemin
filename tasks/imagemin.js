@@ -35,7 +35,7 @@ module.exports = function (grunt) {
             files.src.forEach(function (src) {
                 var dest = files.dest;
                 if (path.extname(dest) === '') {
-                    dest = path.join(dest, path.basename(src));
+                    dest = path.join(dest || '', path.basename(src));
                 }
                 optimize(src, dest, next);
             });
