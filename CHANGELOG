@@ -1,3 +1,9 @@
+v0.1.3:
+  date: 2013-04-05
+  changes:
+    - Fix OptiPNG not being able to overwrite file.
+    - Allow overwriting src when dest/src is the same.
+    - Limit to 10 concurrent optimizations.
 v0.1.2:
   date: 2013-02-22
   changes:

@@ -89,6 +89,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2013-04-05   v0.1.3   Fix OptiPNG not being able to overwrite file. Allow overwriting src when dest/src is the same. Limit to 10 concurrent optimizations.
  * 2013-02-22   v0.1.2   Fix OptiPNG not working on some systems. Prevent OptiPNG from producing .bak files.
  * 2013-02-15   v0.1.1   First official release for Grunt 0.4.0.
  * 2013-01-30   v0.1.1rc8   Fix task not creating destination folders
@@ -99,4 +100,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Fri Feb 22 2013 20:56:24.*
+*This file was generated on Fri Apr 05 2013 21:18:27.*
