@@ -31,14 +31,8 @@ module.exports = function (grunt) {
 
         grunt.verbose.writeflags(options, 'Options');
 
-        grunt.util.async.forEachLimit(this.files, 30, function (files, next) {
-            files.src.forEach(function (src) {
-                var dest = files.dest;
-                if (path.extname(dest) === '') {
-                    dest = path.join(dest, path.basename(src));
-                }
-                optimize(src, dest, next);
-            });
+        grunt.util.async.forEachLimit(this.files, 30, function (file, next) {
+            optimize(file.src[0], file.dest, next);
         }.bind(this), this.async());
 
         function optimize(src, dest, next) {
