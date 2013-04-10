@@ -80,7 +80,7 @@ module.exports = function (grunt) {
                 next();
             }
 
-            if (grunt.option('verbose')) {
+            if (cp && grunt.option('verbose')) {
                 cp.stdout.pipe(process.stdout);
                 cp.stderr.pipe(process.stderr);
             }
