@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify PNG and JPEG images
 
@@ -49,13 +49,22 @@ Level and trials:
 6. 120 trials
 7. 240 trials
 
-
 #### progressive *(jpg only)*
 
 Type: `Boolean`  
 Default: `false`
 
 Lossless conversion to progressive.
+
+#### cache
+
+Type: `String`  
+Default: `null`
+
+Set image optimization cache directory.
+
+> This directory will cache the result of [OptiPNG] and [jpegtran].
+
 
 #### Example config
 
@@ -64,7 +73,8 @@ grunt.initConfig({
   imagemin: {                          // Task
     dist: {                            // Target
       options: {                       // Target options
-        optimizationLevel: 3
+        optimizationLevel: 3,
+        cache: './.imagemin-cache'
       },
       files: {                         // Dictionary of files
         'dist/img.png': 'src/img.png', // 'destination': 'source'
