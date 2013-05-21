@@ -63,7 +63,7 @@ Default: `null`
 
 Set image optimization cache directory.
 
-> This directory will cache the result of [OptiPNG] and [jpegtran].
+> This directory will cache the result of [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](http://jpegclub.org/jpegtran/).
 
 
 #### Example config
