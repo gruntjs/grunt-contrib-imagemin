@@ -58,10 +58,10 @@ Lossless conversion to progressive.
 
 #### cache
 
-Type: `String`  
-Default: `null`
+Type: `Boolean|String`
+Default: `false`
 
-Set image optimization cache directory.
+Set to `true` or some directory path will enable compress cache. Default cache directory is the result of `os.tmpdir()`.
 
 > This directory will cache the result of [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](http://jpegclub.org/jpegtran/).
 
@@ -74,7 +74,7 @@ grunt.initConfig({
     dist: {                            // Target
       options: {                       // Target options
         optimizationLevel: 3,
-        cache: './.imagemin-cache'
+        cache: true
       },
       files: {                         // Dictionary of files
         'dist/img.png': 'src/img.png', // 'destination': 'source'

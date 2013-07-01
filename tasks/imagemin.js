@@ -16,6 +16,7 @@ module.exports = function (grunt) {
     var optipngPath = require('optipng-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
     var crypto = require('crypto');
+    var os = require('os');
 
     function hashFile(filePath) {
         var content = grunt.file.read(filePath);
@@ -27,6 +28,7 @@ module.exports = function (grunt) {
         var options = this.options();
         var optipngArgs = ['-strip', 'all'];
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
+        var cacheDirectory = options.cache === true ? os.tmpdir() : options.cache;
 
         if (typeof options.optimizationLevel === 'number') {
             optipngArgs.push('-o', options.optimizationLevel);
@@ -45,7 +47,7 @@ module.exports = function (grunt) {
         function optimize(src, dest, next) {
             var cp;
             var originalSize = fs.statSync(src).size;
-            var cachePath = options.cache ? path.join(options.cache, hashFile(src)) : null;
+            var cachePath = cacheDirectory ? path.join(cacheDirectory, hashFile(src)) : null;
 
             function processed(err, result, code) {
                 var saved, savedMsg;

@@ -22,7 +22,7 @@
   ],
   "main": "Gruntfile.js",
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test"
@@ -53,6 +53,6 @@
     "jpeg"
   ],
   "publishConfig": {
-    "registry": "http://192.168.0.102:5984/registry/_design/app/_rewrite/"
+    "registry": "http://192.168.0.102:5984/"
   }
 }

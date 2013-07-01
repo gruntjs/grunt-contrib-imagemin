@@ -26,7 +26,7 @@ module.exports = function (grunt) {
     imagemin: {
       dist: {
         options: {
-          cache: './tmp-cache'
+          cache: true
         },
         files: {
           'tmp/test.png': 'test/fixtures/test.png',
