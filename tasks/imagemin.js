@@ -17,12 +17,11 @@ module.exports = function (grunt) {
     var jpegtranPath = require('jpegtran-bin').path;
 
     grunt.registerMultiTask('imagemin', 'Minify PNG and JPEG images', function () {
+        var done = this.async();
         var options = this.options();
         var optipngArgs = ['-strip', 'all'];
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
         var totalSaved = 0;
-
-        var asyncFn = this.async();
 
         if (typeof options.optimizationLevel === 'number') {
             optipngArgs.push('-o', options.optimizationLevel);
@@ -36,7 +35,16 @@ module.exports = function (grunt) {
 
         grunt.util.async.forEachLimit(this.files, 30, function (file, next) {
             optimize(file.src[0], file.dest, next);
-        }.bind(this), done.bind(this));
+        }.bind(this), function (err) {
+            if (err) {
+                grunt.warn(err);
+            }
+
+            grunt.log.writeln('Minified ' + this.files.length + ' ' +
+                (this.files.length === 1 ? 'image' : 'images') +
+                (' (saved '  + filesize(totalSaved) + ')').grey);
+            done();
+        }.bind(this));
 
         function optimize(src, dest, next) {
             var cp;
@@ -88,13 +96,6 @@ module.exports = function (grunt) {
                 cp.stdout.pipe(process.stdout);
                 cp.stderr.pipe(process.stderr);
             }
-        }
-
-        function done(err) {
-            if (err) return asyncFn(err);
-            grunt.log.writeln('Minified ' + this.files.length.toString().cyan + ' images'
-                          + (' (saved '  + filesize(totalSaved) + ')').grey);
-            asyncFn();
         }
     });
 };
