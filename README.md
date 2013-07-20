@@ -20,8 +20,6 @@ grunt.loadNpmTasks('grunt-contrib-imagemin');
 ```
 
 
-
-
 ## Imagemin task
 _Run this task with the `grunt imagemin` command._
 
@@ -57,35 +55,45 @@ Default: `false`
 
 Lossless conversion to progressive.
 
+
 #### Example config
 
 ```javascript
 grunt.initConfig({
-  imagemin: {                          // Task
-    dist: {                            // Target
-      options: {                       // Target options
-        optimizationLevel: 3
+  imagemin: {
+    png: {
+      options: {
+        optimizationLevel: 7
       },
-      files: {                         // Dictionary of files
-        'dist/img.png': 'src/img.png', // 'destination': 'source'
-        'dist/img.jpg': 'src/img.jpg'
-      }
+      files: [
+        {
+          expand: true,
+          cwd: 'project-directory/img/', // cwd is 'current working directory'
+          src: ['**/*.png'],
+          dest: 'project-directory/img/compressed/', // Could also match cwd.
+          ext: '.png'
+        }
+      ]
     },
-    dev: {                             // Another target
-      options: {                       // Target options
-        optimizationLevel: 0
+    jpg: {
+      options: {
+        progressive: true
       },
-      files: {
-        'dev/img.png': 'src/img.png',
-        'dev/img.jpg': 'src/img.jpg'
-      }
+      files: [
+        {
+          expand: true, // Tell Grunt where to find our images and where to export them to.
+          cwd: 'project-directory/img/', // cwd is 'current working directory'
+          src: ['**/*.jpg'],
+          dest: 'project-directory/img/compressed/', // Could also match cwd.
+          ext: '.jpg'
+        }
+      ]
     }
   }
 });
 
 grunt.registerTask('default', ['imagemin']);
 ```
-
 
 ## Release History
 
