@@ -66,19 +66,19 @@ grunt.initConfig({
       options: {                       // Target options
         optimizationLevel: 3
       },
-      files: {                         // Dictionary of files
-        'dist/img.png': 'src/img.png', // 'destination': 'source'
-        'dist/img.jpg': 'src/img.jpg'
-      }
+      files: [                         // Dictionary of files
+        { src: 'dist/img.png', dest: 'src/img.png' },
+        { src: 'dist/img.jpg', dest: 'src/img.jpg' }
+      ]
     },
     dev: {                             // Another target
       options: {                       // Target options
         optimizationLevel: 0
       },
-      files: {
-        'dev/img.png': 'src/img.png',
-        'dev/img.jpg': 'src/img.jpg'
-      }
+      files: [
+        { src: 'dev/img.png', dest: 'src/img.png' },
+        { src: 'dev/img.jpg', dest: 'src/img.jpg' }
+      ]
     }
   }
 });
