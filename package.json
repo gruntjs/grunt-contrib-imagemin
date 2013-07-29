@@ -1,5 +1,5 @@
 {
-  "name": "grunt-contrib-imagemin",
+  "name": "ape-grunt-contrib-imagemin",
   "description": "Minify PNG and JPEG images",
   "version": "0.1.4",
   "homepage": "https://github.com/gruntjs/grunt-contrib-imagemin",
@@ -51,5 +51,8 @@
     "png",
     "jpg",
     "jpeg"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "http://192.168.0.102:5984/"
+  }
 }

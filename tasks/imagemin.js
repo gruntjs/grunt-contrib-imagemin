@@ -15,6 +15,23 @@ module.exports = function (grunt) {
     var filesize = require('filesize');
     var optipngPath = require('optipng-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
+    var crypto = require('crypto');
+    var os = require('os');
+
+    var cacheDirectory = (os.tmpdir || function() {
+        if (process.platform === 'win32') {
+            return process.env.TEMP || process.env.TMP || (process.env.SystemRoot || process.env.windir) + '\\temp';
+        } else {
+            return process.env.TMPDIR || process.env.TMP || process.env.TEMP || '/tmp';
+        }
+    })();
+    cacheDirectory = path.join(cacheDirectory, 'grunt-contrib-imagemin.cache');
+
+    function hashFile(filePath) {
+        var content = grunt.file.read(filePath);
+
+        return crypto.createHash('sha1').update(content).digest('hex');
+    }
 
     grunt.registerMultiTask('imagemin', 'Minify PNG and JPEG images', function () {
         var done = this.async();
@@ -49,6 +66,7 @@ module.exports = function (grunt) {
         function optimize(src, dest, next) {
             var cp;
             var originalSize = fs.statSync(src).size;
+            var cachePath = path.join(cacheDirectory, hashFile(src));
 
             function processed(err, result, code) {
                 var saved, savedMsg;
@@ -60,10 +78,18 @@ module.exports = function (grunt) {
                 saved = originalSize - fs.statSync(dest).size;
                 totalSaved += saved;
 
-                if (result.stderr.indexOf('already optimized') !== -1 || saved < 10) {
+                if (result && (result.stderr.indexOf('already optimized') !== -1 || saved < 10)) {
                     savedMsg = 'already optimized';
                 } else {
                     savedMsg = 'saved ' + filesize(saved);
+                }
+
+                if (!grunt.file.exists(cachePath)) {
+                    grunt.file.copy(dest, cachePath);
+
+                    if (grunt.option('verbose')) {
+                        grunt.log.writeln('[Caching] ' + cachePath + ' <- ' + src);
+                    }
                 }
 
                 grunt.log.writeln('✔ '.green + src + (' (' + savedMsg + ')').grey);
@@ -72,7 +98,13 @@ module.exports = function (grunt) {
 
             grunt.file.mkdir(path.dirname(dest));
 
-            if (path.extname(src) === '.png') {
+            if (grunt.file.exists(cachePath)) {
+                if (grunt.option('verbose')) {
+                    grunt.log.writeln('[Cached] ' + cachePath + ' -> ' + src);
+                }
+                grunt.file.copy(cachePath, dest);
+                processed();
+            } else if (path.extname(src) === '.png') {
                 // OptiPNG can't overwrite without creating a backup file
                 // https://sourceforge.net/tracker/?func=detail&aid=3607244&group_id=151404&atid=780913
                 if (dest !== src && grunt.file.exists(dest)) {
