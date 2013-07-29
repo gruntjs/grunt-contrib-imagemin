@@ -25,9 +25,6 @@ module.exports = function (grunt) {
     },
     imagemin: {
       dist: {
-        options: {
-          cache: true
-        },
         files: {
           'tmp/test.png': 'test/fixtures/test.png',
           'tmp/test.jpg': 'test/fixtures/test.jpg'
@@ -35,7 +32,7 @@ module.exports = function (grunt) {
       }
     },
     nodeunit: {
-      tasks: ['test/*_test.js']
+      tests: ['test/*_test.js']
     }
   });
 

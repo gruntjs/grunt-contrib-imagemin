@@ -18,6 +18,15 @@ module.exports = function (grunt) {
     var crypto = require('crypto');
     var os = require('os');
 
+    var cacheDirectory = (os.tmpdir || function() {
+        if (process.platform === 'win32') {
+            return process.env.TEMP || process.env.TMP || (process.env.SystemRoot || process.env.windir) + '\\temp';
+        } else {
+            return process.env.TMPDIR || process.env.TMP || process.env.TEMP || '/tmp';
+        }
+    })();
+    cacheDirectory = path.join(cacheDirectory, 'grunt-contrib-imagemin.cache');
+
     function hashFile(filePath) {
         var content = grunt.file.read(filePath);
 
@@ -28,7 +37,6 @@ module.exports = function (grunt) {
         var options = this.options();
         var optipngArgs = ['-strip', 'all'];
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
-        var cacheDirectory = options.cache === true ? os.tmpdir() : options.cache;
 
         if (typeof options.optimizationLevel === 'number') {
             optipngArgs.push('-o', options.optimizationLevel);
@@ -47,7 +55,7 @@ module.exports = function (grunt) {
         function optimize(src, dest, next) {
             var cp;
             var originalSize = fs.statSync(src).size;
-            var cachePath = cacheDirectory ? path.join(cacheDirectory, hashFile(src)) : null;
+            var cachePath = path.join(cacheDirectory, hashFile(src));
 
             function processed(err, result, code) {
                 var saved, savedMsg;
@@ -64,7 +72,7 @@ module.exports = function (grunt) {
                     savedMsg = 'saved ' + filesize(saved);
                 }
 
-                if (cachePath && !grunt.file.exists(cachePath)) {
+                if (!grunt.file.exists(cachePath)) {
                     grunt.file.copy(dest, cachePath);
 
                     if (grunt.option('verbose')) {
@@ -78,7 +86,7 @@ module.exports = function (grunt) {
 
             grunt.file.mkdir(path.dirname(dest));
 
-            if (cachePath && grunt.file.exists(cachePath)) {
+            if (grunt.file.exists(cachePath)) {
                 if (grunt.option('verbose')) {
                     grunt.log.writeln('[Cached] ' + cachePath + ' -> ' + src);
                 }
