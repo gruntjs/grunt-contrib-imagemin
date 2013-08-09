@@ -72,7 +72,7 @@ module.exports = function (grunt) {
 
             grunt.file.mkdir(path.dirname(dest));
 
-            if (path.extname(src) === '.png') {
+            if (path.extname(src).toLowerCase() === '.png') {
                 // OptiPNG can't overwrite without creating a backup file
                 // https://sourceforge.net/tracker/?func=detail&aid=3607244&group_id=151404&atid=780913
                 if (dest !== src && grunt.file.exists(dest)) {
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
                     cmd: optipngPath,
                     args: optipngArgs.concat(['-out', dest, src])
                 }, processed);
-            } else if (['.jpg', '.jpeg'].indexOf(path.extname(src)) !== -1) {
+            } else if (['.jpg', '.jpeg'].indexOf(path.extname(src).toLowerCase()) !== -1) {
                 cp = grunt.util.spawn({
                     cmd: jpegtranPath,
                     args: jpegtranArgs.concat(['-outfile', dest, src])
