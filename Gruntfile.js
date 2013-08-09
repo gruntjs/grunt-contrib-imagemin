@@ -27,7 +27,9 @@ module.exports = function (grunt) {
       dist: {
         files: {
           'tmp/test.png': 'test/fixtures/test.png',
-          'tmp/test.jpg': 'test/fixtures/test.jpg'
+          'tmp/test.jpg': 'test/fixtures/test.jpg',
+          'tmp/test-uppercase.PNG': 'test/fixtures/test-uppercase.PNG',
+          'tmp/test-uppercase.JPG': 'test/fixtures/test-uppercase.JPG'
         }
       }
     },
