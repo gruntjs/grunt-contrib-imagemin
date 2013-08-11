@@ -15,6 +15,7 @@ module.exports = function (grunt) {
     var crypto = require('crypto');
     var childProcess = require('child_process');
     var filesize = require('filesize');
+    var chalk = require('chalk');
     var optipngPath = require('optipng-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
     var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
@@ -54,7 +55,7 @@ module.exports = function (grunt) {
 
             grunt.log.writeln('Minified ' + this.files.length + ' ' +
                 (this.files.length === 1 ? 'image' : 'images') +
-                (' (saved '  + filesize(totalSaved) + ')').grey);
+                chalk.gray(' (saved '  + filesize(totalSaved) + ')'));
             done();
         }.bind(this));
 
@@ -87,7 +88,7 @@ module.exports = function (grunt) {
                     }
                 }
 
-                grunt.log.writeln('✔ '.green + src + (' (' + savedMsg + ')').grey);
+                grunt.log.writeln(chalk.green('✔ ') + src + chalk.gray(' (' + savedMsg + ')'));
                 next();
             }
 
