@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     var chalk = require('chalk');
     var optipngPath = require('optipng-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
+    var gifsiclePath = require('gifsicle').path;
     var numCPUs = os.cpus().length;
     var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
     var cacheDir = path.join(tmpdir, 'grunt-contrib-imagemin.cache');
@@ -35,6 +36,7 @@ module.exports = function (grunt) {
         });
         var optipngArgs = ['-strip', 'all'];
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
+        var gifsicleArgs = ['-w'];
         var totalSaved = 0;
 
         if (typeof options.optimizationLevel === 'number') {
@@ -117,6 +119,11 @@ module.exports = function (grunt) {
                 cp = grunt.util.spawn({
                     cmd: jpegtranPath,
                     args: jpegtranArgs.concat(['-outfile', dest, src])
+                }, processed);
+            } else if (path.extname(src).toLowerCase() === '.gif') {
+                cp = grunt.util.spawn({
+                    cmd: gifsiclePath,
+                    args: gifsicleArgs.concat(['-o', dest, src])
                 }, processed);
             } else {
                 next();

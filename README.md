@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify PNG and JPEG images
 
@@ -27,13 +27,19 @@ _Run this task with the `grunt imagemin` command._
 
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
-Minify images using [OptiPNG](http://optipng.sourceforge.net) and [jpegtran](http://jpegclub.org/jpegtran/).
+Minify images using [OptiPNG](http://optipng.sourceforge.net), [jpegtran](http://jpegclub.org/jpegtran/) and [gifsicle](http://www.lcdf.org/gifsicle).
+
+Images will be cached and only minified again if they change.
+
 ### Options
+
+Options will only apply to the relevant files, so you don't need separate targets for png/jpg.
+
 
 #### optimizationLevel *(png only)*
 
-Type: `Number`  
-Default: `0`
+Type: `Number`
+Default: `7`
 
 Select optimization level between `0` and `7`.
 
@@ -52,33 +58,35 @@ Level and trials:
 
 #### progressive *(jpg only)*
 
-Type: `Boolean`  
-Default: `false`
+Type: `Boolean`
+Default: `true`
 
 Lossless conversion to progressive.
 
 #### Example config
 
+You can either map your files statically or [dynamically](https://github.com/gruntjs/grunt/wiki/Configuring-tasks#building-the-files-object-dynamically).
+
 ```javascript
 grunt.initConfig({
   imagemin: {                          // Task
-    dist: {                            // Target
+    static: {                          // Target
       options: {                       // Target options
         optimizationLevel: 3
       },
       files: {                         // Dictionary of files
         'dist/img.png': 'src/img.png', // 'destination': 'source'
-        'dist/img.jpg': 'src/img.jpg'
+        'dist/img.jpg': 'src/img.jpg',
+        'dist/img.gif': 'src/img.gif'
       }
     },
-    dev: {                             // Another target
-      options: {                       // Target options
-        optimizationLevel: 0
-      },
-      files: {
-        'dev/img.png': 'src/img.png',
-        'dev/img.jpg': 'src/img.jpg'
-      }
+    dynamic: {                         // Another target
+      files: [{
+        expand: true,                  // Enable dynamic expansion
+        cwd: 'src/',                   // Src matches are relative to this path
+        src: ['**/*.{png,jpg,gif}']    // Actual patterns to match
+        dest: 'dist/'                  // Destination path prefix
+      }]
     }
   }
 });
@@ -101,4 +109,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Wed Apr 10 2013 20:04:49.*
+*This file was generated on Sun Aug 11 2013 22:14:05.*
