@@ -2,8 +2,8 @@
 
 ## optimizationLevel *(png only)*
 
-Type: `Number`  
-Default: `0`
+Type: `Number`
+Default: `7`
 
 Select optimization level between `0` and `7`.
 
@@ -22,7 +22,7 @@ Level and trials:
 
 ## progressive *(jpg only)*
 
-Type: `Boolean`  
-Default: `false`
+Type: `Boolean`
+Default: `true`
 
 Lossless conversion to progressive.
