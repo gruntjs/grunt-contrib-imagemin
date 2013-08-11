@@ -1,5 +1,8 @@
 # Options
 
+Options will only apply to the relevant files, so you don't need separate targets for png/jpg.
+
+
 ## optimizationLevel *(png only)*
 
 Type: `Number`
