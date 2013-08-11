@@ -52,5 +52,8 @@
     "png",
     "jpg",
     "jpeg"
+  ],
+  "files": [
+    "tasks/imagemin.js"
   ]
 }
