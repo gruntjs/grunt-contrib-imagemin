@@ -11,25 +11,17 @@
 module.exports = function (grunt) {
     var path = require('path');
     var fs = require('fs');
+    var os = require('os');
+    var crypto = require('crypto');
     var childProcess = require('child_process');
     var filesize = require('filesize');
     var optipngPath = require('optipng-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
-    var crypto = require('crypto');
-    var os = require('os');
-
-    var cacheDirectory = (os.tmpdir || function() {
-        if (process.platform === 'win32') {
-            return process.env.TEMP || process.env.TMP || (process.env.SystemRoot || process.env.windir) + '\\temp';
-        } else {
-            return process.env.TMPDIR || process.env.TMP || process.env.TEMP || '/tmp';
-        }
-    })();
-    cacheDirectory = path.join(cacheDirectory, 'grunt-contrib-imagemin.cache');
+    var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
+    var cacheDir = path.join(tmpdir, 'grunt-contrib-imagemin.cache');
 
     function hashFile(filePath) {
         var content = grunt.file.read(filePath);
-
         return crypto.createHash('sha1').update(content).digest('hex');
     }
 
@@ -66,7 +58,7 @@ module.exports = function (grunt) {
         function optimize(src, dest, next) {
             var cp;
             var originalSize = fs.statSync(src).size;
-            var cachePath = path.join(cacheDirectory, hashFile(src));
+            var cachePath = path.join(cacheDir, hashFile(src));
 
             function processed(err, result, code) {
                 var saved, savedMsg;
@@ -88,7 +80,7 @@ module.exports = function (grunt) {
                     grunt.file.copy(dest, cachePath);
 
                     if (grunt.option('verbose')) {
-                        grunt.log.writeln('[Caching] ' + cachePath + ' <- ' + src);
+                        grunt.log.writeln('[caching] ' + cachePath + ' <- ' + src);
                     }
                 }
 
@@ -100,8 +92,9 @@ module.exports = function (grunt) {
 
             if (grunt.file.exists(cachePath)) {
                 if (grunt.option('verbose')) {
-                    grunt.log.writeln('[Cached] ' + cachePath + ' -> ' + src);
+                    grunt.log.writeln('[cached] ' + cachePath + ' -> ' + src);
                 }
+
                 grunt.file.copy(cachePath, dest);
                 processed();
             } else if (path.extname(src).toLowerCase() === '.png') {
