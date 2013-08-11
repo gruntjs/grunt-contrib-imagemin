@@ -80,7 +80,7 @@ module.exports = function (grunt) {
                     grunt.file.copy(dest, cachePath);
 
                     if (grunt.option('verbose')) {
-                        grunt.log.writeln('[caching] ' + cachePath + ' <- ' + src);
+                        grunt.log.writeln('[caching] ' + src + ' → ' + cachePath);
                     }
                 }
 
@@ -92,7 +92,7 @@ module.exports = function (grunt) {
 
             if (grunt.file.exists(cachePath)) {
                 if (grunt.option('verbose')) {
-                    grunt.log.writeln('[cached] ' + cachePath + ' -> ' + src);
+                    grunt.log.writeln('[cached] ' + src + ' ← ' + cachePath);
                 }
 
                 grunt.file.copy(cachePath, dest);
