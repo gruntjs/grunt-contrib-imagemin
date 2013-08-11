@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     var chalk = require('chalk');
     var optipngPath = require('optipng-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
+    var numCPUs = os.cpus().length;
     var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
     var cacheDir = path.join(tmpdir, 'grunt-contrib-imagemin.cache');
 
@@ -46,7 +47,7 @@ module.exports = function (grunt) {
 
         grunt.verbose.writeflags(options, 'Options');
 
-        grunt.util.async.forEachLimit(this.files, 30, function (file, next) {
+        grunt.util.async.forEachLimit(this.files, numCPUs, function (file, next) {
             optimize(file.src[0], file.dest, next);
         }.bind(this), function (err) {
             if (err) {
