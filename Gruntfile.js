@@ -28,8 +28,10 @@ module.exports = function (grunt) {
         files: {
           'tmp/test.png': 'test/fixtures/test.png',
           'tmp/test.jpg': 'test/fixtures/test.jpg',
+          'tmp/test.gif': 'test/fixtures/test.gif',
           'tmp/test-uppercase.PNG': 'test/fixtures/test-uppercase.PNG',
-          'tmp/test-uppercase.JPG': 'test/fixtures/test-uppercase.JPG'
+          'tmp/test-uppercase.JPG': 'test/fixtures/test-uppercase.JPG',
+          'tmp/test-uppercase.GIF': 'test/fixtures/test-uppercase.GIF'
         }
       }
     },

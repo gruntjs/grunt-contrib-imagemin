@@ -59,5 +59,31 @@ exports.imagemin = {
         test.ok(fs.existsSync(path.join(cacheDir, original)), 'should cached JPG images');
 
         test.done();
+    },
+    minifyGif: function (test) {
+        test.expect(1);
+
+        var actual = fs.statSync('tmp/test.gif').size;
+        var original = fs.statSync('test/fixtures/test.gif').size;
+        test.ok(actual < original, 'should minify GIF images');
+
+        test.done();
+    },
+    minifyUppercaseGif: function (test) {
+        test.expect(1);
+
+        var actual = fs.statSync('tmp/test-uppercase.GIF').size;
+        var original = fs.statSync('test/fixtures/test-uppercase.GIF').size;
+        test.ok(actual < original, 'should minify uppercase extension GIF images');
+
+        test.done();
+    },
+    cacheGif: function (test) {
+        test.expect(1);
+
+        var original = crypto.createHash('sha1').update(grunt.file.read('test/fixtures/test.gif')).digest('hex');
+        test.ok(fs.existsSync(path.join(cacheDir, original)), 'should cached GIF images');
+
+        test.done();
     }
 };
