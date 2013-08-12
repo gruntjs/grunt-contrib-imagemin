@@ -31,6 +31,7 @@
     "filesize": "~1.10.0",
     "jpegtran-bin": "~0.1.0",
     "optipng-bin": "~0.2.0",
+    "gifsicle": "~0.1.0",
     "chalk": "~0.2.0"
   },
   "devDependencies": {
