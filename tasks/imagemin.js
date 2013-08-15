@@ -17,6 +17,7 @@ module.exports = function (grunt) {
     var filesize = require('filesize');
     var chalk = require('chalk');
     var optipngPath = require('optipng-bin').path;
+    var pngquantPath = require('pngquant-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
     var gifsiclePath = require('gifsicle').path;
     var numCPUs = os.cpus().length;
@@ -32,9 +33,11 @@ module.exports = function (grunt) {
         var done = this.async();
         var options = this.options({
             optimizationLevel: 7,
-            progressive: true
+            progressive: true,
+            pngquant: true
         });
         var optipngArgs = ['-strip', 'all'];
+        var pngquantArgs = ['-'];
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
         var gifsicleArgs = ['-w'];
         var totalSaved = 0;
@@ -105,16 +108,38 @@ module.exports = function (grunt) {
                 grunt.file.copy(cachePath, dest);
                 processed();
             } else if (path.extname(src).toLowerCase() === '.png') {
-                // OptiPNG can't overwrite without creating a backup file
-                // https://sourceforge.net/tracker/?func=detail&aid=3607244&group_id=151404&atid=780913
-                if (dest !== src && grunt.file.exists(dest)) {
-                    grunt.file.delete(dest);
-                }
+                if (options.pngquant) {
+                    var tmpDest = dest + '.tmp';
 
-                cp = grunt.util.spawn({
-                    cmd: optipngPath,
-                    args: optipngArgs.concat(['-out', dest, src])
-                }, processed);
+                    cp = grunt.util.spawn({
+                        cmd: pngquantPath,
+                        args: pngquantArgs
+                    }, function () {
+                        if (grunt.file.exists(dest)) {
+                            grunt.file.delete(dest);
+                        }
+
+                        grunt.util.spawn({
+                            cmd: optipngPath,
+                            args: optipngArgs.concat(['-out', dest, tmpDest])
+                        }, function () {
+                            grunt.file.delete(tmpDest);
+                            processed();
+                        });
+                    });
+
+                    cp.stdout.pipe(fs.createWriteStream(tmpDest));
+                    fs.createReadStream(src).pipe(cp.stdin);
+                } else {
+                    if (dest !== src && grunt.file.exists(dest)) {
+                        grunt.file.delete(dest);
+                    }
+
+                    cp = grunt.util.spawn({
+                        cmd: optipngPath,
+                        args: optipngArgs.concat(['-out', dest, src])
+                    }, processed);
+                }
             } else if (['.jpg', '.jpeg'].indexOf(path.extname(src).toLowerCase()) !== -1) {
                 cp = grunt.util.spawn({
                     cmd: jpegtranPath,
