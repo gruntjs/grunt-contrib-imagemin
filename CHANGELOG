@@ -1,3 +1,9 @@
+v0.2.0:
+  date: 2013-08-16
+  changes:
+    - Add `gifsicle` and `pngquant`.
+    - Cache images so only changed images are optimized.
+    - Default `optimizationLevel` to `7` and `progressive` to `true`.
 v0.1.4:
   date: 2013-04-10
   changes:
