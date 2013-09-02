@@ -26,5 +26,6 @@ grunt.initConfig({
   }
 });
 
+grunt.loadNpmTasks('grunt-contrib-imagemin');
 grunt.registerTask('default', ['imagemin']);
 ```
