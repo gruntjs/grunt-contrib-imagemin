@@ -50,6 +50,10 @@ module.exports = function (grunt) {
             jpegtranArgs.push('-progressive');
         }
 
+        if (options.interlaced === true) {
+            gifsicleArgs.push('-i');
+        }
+
         grunt.verbose.writeflags(options, 'Options');
 
         grunt.util.async.forEachLimit(this.files, numCPUs, function (file, next) {
