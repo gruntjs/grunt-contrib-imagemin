@@ -51,7 +51,7 @@ module.exports = function (grunt) {
         }
 
         if (options.interlaced === true) {
-            gifsicleArgs.push('-i');
+            gifsicleArgs.push('--interlace');
         }
 
         grunt.verbose.writeflags(options, 'Options');
