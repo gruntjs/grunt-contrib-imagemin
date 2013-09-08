@@ -31,6 +31,14 @@ Default: `true`
 Lossless conversion to progressive.
 
 
+## interlaced *(gif only)*
+
+Type: `Boolean`
+Default: `true`
+
+Interlace gif for progressive rendering.
+
+
 ## pngquant
 
 Type: `Boolean`
