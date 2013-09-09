@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin v0.2.1 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify PNG and JPEG images
 
@@ -116,6 +116,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2013-09-09   v0.3.0   Add `interlace` option for gif files.
  * 2013-08-16   v0.2.0   Add `gifsicle` and `pngquant`. Cache images so only changed images are optimized. Default `optimizationLevel` to `7` and `progressive` to `true`.
  * 2013-04-10   v0.1.4   Fix exception when running in verbose mode.
  * 2013-04-05   v0.1.3   Fix OptiPNG not being able to overwrite file. Allow overwriting src when dest/src is the same. Limit to 10 concurrent optimizations.
@@ -129,4 +130,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Fri Aug 16 2013 20:16:49.*
+*This file was generated on Mon Sep 09 2013 15:50:49.*

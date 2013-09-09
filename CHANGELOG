@@ -1,3 +1,7 @@
+v0.3.0:
+  date: 2013-09-09
+  changes:
+   - Add `interlace` option for gif files.
 v0.2.0:
   date: 2013-08-16
   changes:
