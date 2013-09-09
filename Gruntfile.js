@@ -2,7 +2,7 @@
  * grunt-contrib-imagemin
  * http://gruntjs.com/
  *
- * Copyright (c) 2012 Sindre Sorhus, contributors
+ * Copyright (c) 2013 Sindre Sorhus, contributors
  * Licensed under the MIT license.
  */
 
