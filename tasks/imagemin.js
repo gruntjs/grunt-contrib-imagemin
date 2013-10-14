@@ -34,7 +34,7 @@ module.exports = function (grunt) {
         var options = this.options({
             optimizationLevel: 7,
             progressive: true,
-            pngquant: true
+            pngquant: false
         });
         var optipngArgs = ['-strip', 'all'];
         var pngquantArgs = ['-'];
