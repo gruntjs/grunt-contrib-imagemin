@@ -75,7 +75,7 @@ Interlace gif for progressive rendering.
 #### pngquant
 
 Type: `Boolean`
-Default: `true`
+Default: `false`
 
 Whether to enable pngquant compression.
 
@@ -130,4 +130,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Mon Sep 09 2013 10:27:05.*
+*This file was generated on Sun Oct 20 2013 20:52:38.*
