@@ -42,7 +42,7 @@ Interlace gif for progressive rendering.
 ## pngquant
 
 Type: `Boolean`
-Default: `true`
+Default: `false`
 
 Whether to enable pngquant compression.
 
