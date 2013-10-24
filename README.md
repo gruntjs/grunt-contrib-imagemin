@@ -1,6 +1,6 @@
 # grunt-contrib-imagemin v0.3.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
-> Minify PNG and JPEG images
+> Minify PNG, JPEG and GIF images
 
 
 
@@ -130,4 +130,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Sun Oct 20 2013 20:52:38.*
+*This file was generated on Thu Oct 24 2013 09:05:39.*
