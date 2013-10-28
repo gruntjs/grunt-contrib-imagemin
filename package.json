@@ -20,35 +20,33 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "filesize": "~2.0.0",
-    "jpegtran-bin": "~0.2.0",
-    "optipng-bin": "~0.3.0",
-    "gifsicle": "~0.1.0",
-    "pngquant-bin": "~0.1.0",
+    "async": "~0.2.9",
     "chalk": "~0.4.0",
-    "async": "~0.2.9"
+    "filesize": "~2.0.0",
+    "image-min": "~0.1.1"
   },
   "devDependencies": {
-    "grunt-contrib-internal": "~0.4.6",
+    "cache-file": "~0.1.2",
+    "grunt": "~0.4.0",
     "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-internal": "~0.4.6",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.0",
     "time-grunt": "~0.2.7"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
   },
   "keywords": [
+    "compress",
+    "gif",
     "gruntplugin",
     "image",
     "img",
-    "minify",
-    "compress",
-    "png",
-    "jpg",
     "jpeg",
-    "gif"
+    "jpg",
+    "minify",
+    "png"
   ],
   "files": [
     "tasks",

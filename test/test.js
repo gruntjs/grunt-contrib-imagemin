@@ -1,11 +1,10 @@
 'use strict';
+
+var cache = require('cache-file');
 var fs = require('fs');
+var grunt = require('grunt');
 var os = require('os');
 var path = require('path');
-var crypto = require('crypto');
-var grunt = require('grunt');
-var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
-var cacheDir = path.join(tmpdir, 'grunt-contrib-imagemin.cache');
 
 exports.imagemin = {
     minifyPng: function (test) {
@@ -29,8 +28,8 @@ exports.imagemin = {
     cachePng: function (test) {
         test.expect(1);
 
-        var original = crypto.createHash('sha1').update(grunt.file.read('test/fixtures/test.png')).digest('hex');
-        test.ok(fs.existsSync(path.join(cacheDir, original)), 'should cached PNG images');
+        var original = path.join(__dirname, 'fixtures/test.png');
+        test.ok(cache.check(original, { name: 'imagemin' }), 'should cache PNG images');
 
         test.done();
     },
@@ -55,8 +54,8 @@ exports.imagemin = {
     cacheJpg: function (test) {
         test.expect(1);
 
-        var original = crypto.createHash('sha1').update(grunt.file.read('test/fixtures/test.jpg')).digest('hex');
-        test.ok(fs.existsSync(path.join(cacheDir, original)), 'should cached JPG images');
+        var original = path.join(__dirname, 'fixtures/test.jpg');
+        test.ok(cache.check(original, { name: 'imagemin' }), 'should cache JPGimages');
 
         test.done();
     },
@@ -81,8 +80,8 @@ exports.imagemin = {
     cacheGif: function (test) {
         test.expect(1);
 
-        var original = crypto.createHash('sha1').update(grunt.file.read('test/fixtures/test.gif')).digest('hex');
-        test.ok(fs.existsSync(path.join(cacheDir, original)), 'should cached GIF images');
+        var original = path.join(__dirname, 'fixtures/test.gif');
+        test.ok(cache.check(original, { name: 'imagemin' }), 'should cache GIF images');
 
         test.done();
     }
