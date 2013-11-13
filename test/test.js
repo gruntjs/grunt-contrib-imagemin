@@ -26,6 +26,15 @@ exports.imagemin = {
 
         test.done();
     },
+    minifyOptimizedPng: function (test) {
+        test.expect(1);
+
+        var actual = crypto.createHash('sha1').update(grunt.file.read('tmp/test-optimized.png')).digest('hex');
+        var original = crypto.createHash('sha1').update(grunt.file.read('test/fixtures/test-optimized.png')).digest('hex');
+        test.ok(actual === original, 'should not change previously optimized images');
+
+        test.done();
+    },
     cachePng: function (test) {
         test.expect(1);
 
@@ -52,6 +61,15 @@ exports.imagemin = {
 
         test.done();
     },
+    minifyOptimizedJpg: function (test) {
+        test.expect(1);
+
+        var actual = crypto.createHash('sha1').update(grunt.file.read('tmp/test-optimized.jpg')).digest('hex');
+        var original = crypto.createHash('sha1').update(grunt.file.read('test/fixtures/test-optimized.jpg')).digest('hex');
+        test.ok(actual === original, 'should not change previously optimized images');
+
+        test.done();
+    },
     cacheJpg: function (test) {
         test.expect(1);
 
@@ -75,6 +93,15 @@ exports.imagemin = {
         var actual = fs.statSync('tmp/test-uppercase.GIF').size;
         var original = fs.statSync('test/fixtures/test-uppercase.GIF').size;
         test.ok(actual < original, 'should minify uppercase extension GIF images');
+
+        test.done();
+    },
+    minifyOptimizedGif: function (test) {
+        test.expect(1);
+
+        var actual = crypto.createHash('sha1').update(grunt.file.read('tmp/test-optimized.gif')).digest('hex');
+        var original = crypto.createHash('sha1').update(grunt.file.read('test/fixtures/test-optimized.gif')).digest('hex');
+        test.ok(actual === original, 'should not change previously optimized images');
 
         test.done();
     },

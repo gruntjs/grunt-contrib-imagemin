@@ -73,6 +73,7 @@ module.exports = function (grunt) {
             var cp;
             var originalSize = fs.statSync(src).size;
             var cachePath = path.join(cacheDir, hashFile(src));
+            var tmpDest = dest + '.tmp';
 
             function processed(err, result, code) {
                 var saved, savedMsg;
@@ -81,14 +82,21 @@ module.exports = function (grunt) {
                     grunt.log.writeln(err);
                 }
 
-                saved = originalSize - fs.statSync(dest).size;
-                totalSaved += saved;
+                saved = originalSize - fs.statSync(tmpDest).size;
 
-                if (result && (result.stderr.indexOf('already optimized') !== -1 || saved < 10)) {
+                if ((result && result.stderr.indexOf('already optimized') !== -1) || saved < 7) {
                     savedMsg = 'already optimized';
+                    // use the original
+                    if (src !== dest) {
+                        grunt.file.copy(src, dest);
+                    }
                 } else {
                     savedMsg = 'saved ' + filesize(saved);
+                    // keep optimized image
+                    grunt.file.copy(tmpDest, dest);
+                    totalSaved += saved;
                 }
+                grunt.file.delete(tmpDest);
 
                 if (!grunt.file.exists(cachePath)) {
                     grunt.file.copy(dest, cachePath);
@@ -109,25 +117,20 @@ module.exports = function (grunt) {
                     grunt.log.writeln('[cached] ' + src + ' ← ' + cachePath);
                 }
 
-                grunt.file.copy(cachePath, dest);
+                grunt.file.copy(cachePath, tmpDest);
                 processed();
             } else if (path.extname(src).toLowerCase() === '.png') {
                 if (options.pngquant) {
-                    var tmpDest = dest + '.tmp';
 
                     cp = grunt.util.spawn({
                         cmd: pngquantPath,
                         args: pngquantArgs
                     }, function () {
-                        if (grunt.file.exists(dest)) {
-                            grunt.file.delete(dest);
-                        }
 
                         grunt.util.spawn({
                             cmd: optipngPath,
-                            args: optipngArgs.concat(['-out', dest, tmpDest])
+                            args: optipngArgs.concat(['-out', tmpDest, src])
                         }, function () {
-                            grunt.file.delete(tmpDest);
                             processed();
                         });
                     });
@@ -135,24 +138,21 @@ module.exports = function (grunt) {
                     cp.stdout.pipe(fs.createWriteStream(tmpDest));
                     fs.createReadStream(src).pipe(cp.stdin);
                 } else {
-                    if (dest !== src && grunt.file.exists(dest)) {
-                        grunt.file.delete(dest);
-                    }
 
                     cp = grunt.util.spawn({
                         cmd: optipngPath,
-                        args: optipngArgs.concat(['-out', dest, src])
+                        args: optipngArgs.concat(['-out', tmpDest, src])
                     }, processed);
                 }
             } else if (['.jpg', '.jpeg'].indexOf(path.extname(src).toLowerCase()) !== -1) {
                 cp = grunt.util.spawn({
                     cmd: jpegtranPath,
-                    args: jpegtranArgs.concat(['-outfile', dest, src])
+                    args: jpegtranArgs.concat(['-outfile', tmpDest, src])
                 }, processed);
             } else if (path.extname(src).toLowerCase() === '.gif') {
                 cp = grunt.util.spawn({
                     cmd: gifsiclePath,
-                    args: gifsicleArgs.concat(['-o', dest, src])
+                    args: gifsicleArgs.concat(['-o', tmpDest, src])
                 }, processed);
             } else {
                 next();
