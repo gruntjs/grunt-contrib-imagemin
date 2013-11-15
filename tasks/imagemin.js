@@ -127,7 +127,10 @@ module.exports = function (grunt) {
                             cmd: optipngPath,
                             args: optipngArgs.concat(['-out', dest, tmpDest])
                         }, function () {
-                            grunt.file.delete(tmpDest);
+                            if(grunt.file.exists(tmpDest)){
+                                grunt.file.delete(tmpDest);
+                            }
+                            
                             processed();
                         });
                     });
