@@ -16,6 +16,7 @@ module.exports = function (grunt) {
     var childProcess = require('child_process');
     var filesize = require('filesize');
     var chalk = require('chalk');
+    var async = require('async');
     var optipngPath = require('optipng-bin').path;
     var pngquantPath = require('pngquant-bin').path;
     var jpegtranPath = require('jpegtran-bin').path;
@@ -56,7 +57,7 @@ module.exports = function (grunt) {
 
         grunt.verbose.writeflags(options, 'Options');
 
-        grunt.util.async.forEachLimit(this.files, numCPUs, function (file, next) {
+        async.eachLimit(this.files, numCPUs, function (file, next) {
             optimize(file.src[0], file.dest, next);
         }.bind(this), function (err) {
             if (err) {
