@@ -69,6 +69,12 @@ module.exports = function (grunt) {
             done();
         }.bind(this));
 
+        function deleteTempFile(filepath) {
+            // Pass the "force" flag to allow deleting the file even if it's
+            // outside of the Grunt base directory.
+            grunt.file.delete(filepath, {force: true});
+        }
+
         function optimize(src, dest, next) {
             var cp;
             var originalSize = fs.statSync(src).size;
@@ -120,14 +126,14 @@ module.exports = function (grunt) {
                         args: pngquantArgs
                     }, function () {
                         if (grunt.file.exists(dest)) {
-                            grunt.file.delete(dest);
+                            deleteTempFile(dest);
                         }
 
                         grunt.util.spawn({
                             cmd: optipngPath,
                             args: optipngArgs.concat(['-out', dest, tmpDest])
                         }, function () {
-                            grunt.file.delete(tmpDest);
+                            deleteTempFile(tmpDest);
                             processed();
                         });
                     });
@@ -136,7 +142,7 @@ module.exports = function (grunt) {
                     fs.createReadStream(src).pipe(cp.stdin);
                 } else {
                     if (dest !== src && grunt.file.exists(dest)) {
-                        grunt.file.delete(dest);
+                        deleteTempFile(dest);
                     }
 
                     cp = grunt.util.spawn({
