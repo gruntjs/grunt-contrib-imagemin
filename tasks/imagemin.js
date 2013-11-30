@@ -55,8 +55,6 @@ module.exports = function (grunt) {
             gifsicleArgs.push('--interlace');
         }
 
-        grunt.verbose.writeflags(options, 'Options');
-
         async.eachLimit(this.files, numCPUs, function (file, next) {
             optimize(file.src[0], file.dest, next);
         }.bind(this), function (err) {
