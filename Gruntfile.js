@@ -31,7 +31,10 @@ module.exports = function (grunt) {
           'tmp/test.gif': 'test/fixtures/test.gif',
           'tmp/test-uppercase.PNG': 'test/fixtures/test-uppercase.PNG',
           'tmp/test-uppercase.JPG': 'test/fixtures/test-uppercase.JPG',
-          'tmp/test-uppercase.GIF': 'test/fixtures/test-uppercase.GIF'
+          'tmp/test-uppercase.GIF': 'test/fixtures/test-uppercase.GIF',
+          'tmp/test-optimized.png': 'test/fixtures/test-optimized.png',
+          'tmp/test-optimized.jpg': 'test/fixtures/test-optimized.jpg',
+          'tmp/test-optimized.gif': 'test/fixtures/test-optimized.gif'
         }
       }
     },
