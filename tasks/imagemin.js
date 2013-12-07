@@ -42,6 +42,7 @@ module.exports = function (grunt) {
         var jpegtranArgs = ['-copy', 'none', '-optimize'];
         var gifsicleArgs = ['-w'];
         var totalSaved = 0;
+		
 
         if (typeof options.optimizationLevel === 'number') {
             optipngArgs.push('-o', options.optimizationLevel);
@@ -74,19 +75,23 @@ module.exports = function (grunt) {
             var cachePath = path.join(cacheDir, hashFile(src));
 
             function processed(err, result, code) {
-                var saved, savedMsg;
+                var newFileSize, saved, savedMsg, percentSaved = 0;
 
                 if (err) {
                     grunt.log.writeln(err);
                 }
 
-                saved = originalSize - fs.statSync(dest).size;
+				newFileSize = fs.statSync(dest).size;
+                saved = originalSize - newFileSize;
                 totalSaved += saved;
+				if (originalSize != 0) {
+					percentSaved = (((originalSize - newFileSize) / originalSize) * 100).toFixed(2);
+				}
 
                 if (result && (result.stderr.indexOf('already optimized') !== -1 || saved < 10)) {
                     savedMsg = 'already optimized';
                 } else {
-                    savedMsg = 'saved ' + filesize(saved);
+                    savedMsg = 'saved ' + percentSaved + '%, ' + filesize(saved);
                 }
 
                 if (!grunt.file.exists(cachePath)) {
