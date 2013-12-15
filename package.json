@@ -56,6 +56,7 @@
     "jpeg"
   ],
   "files": [
-    "tasks/imagemin.js"
+    "tasks",
+    "LICENSE-MIT"
   ]
 }
