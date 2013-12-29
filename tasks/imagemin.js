@@ -35,7 +35,8 @@ module.exports = function (grunt) {
         var options = this.options({
             optimizationLevel: 7,
             progressive: true,
-            pngquant: false
+            pngquant: false,
+            ayncLimit: numCPUs
         });
         var optipngArgs = ['-strip', 'all'];
         var pngquantArgs = ['-'];
@@ -55,7 +56,7 @@ module.exports = function (grunt) {
             gifsicleArgs.push('--interlace');
         }
 
-        async.eachLimit(this.files, numCPUs, function (file, next) {
+        async.eachLimit(this.files, options.ayncLimit, function (file, next) {
             optimize(file.src[0], file.dest, next);
         }.bind(this), function (err) {
             if (err) {
@@ -125,7 +126,10 @@ module.exports = function (grunt) {
                         grunt.util.spawn({
                             cmd: optipngPath,
                             args: optipngArgs.concat(['-out', dest, tmpDest])
-                        }, function () {
+                        }, function (err) {
+                            if (err) {
+                                grunt.fail.fatal(err);
+                            }
                             grunt.file.delete(tmpDest);
                             processed();
                         });
