@@ -98,7 +98,7 @@ module.exports = function (grunt) {
                 }
 
                 grunt.log.writeln(chalk.green('✔ ') + src + chalk.gray(' (' + savedMsg + ')'));
-                next();
+                process.nextTick(next);
             }
 
             grunt.file.mkdir(path.dirname(dest));
