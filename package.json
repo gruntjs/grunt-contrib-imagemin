@@ -2,18 +2,11 @@
   "name": "grunt-contrib-imagemin",
   "description": "Minify PNG, JPEG and GIF images",
   "version": "0.4.0",
-  "homepage": "https://github.com/gruntjs/grunt-contrib-imagemin",
   "author": {
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/gruntjs/grunt-contrib-imagemin.git"
-  },
-  "bugs": {
-    "url": "https://github.com/gruntjs/grunt-contrib-imagemin/issues"
-  },
+  "repository": "gruntjs/grunt-contrib-imagemin",
   "licenses": [
     {
       "type": "MIT",
@@ -53,7 +46,8 @@
     "compress",
     "png",
     "jpg",
-    "jpeg"
+    "jpeg",
+    "gif"
   ],
   "files": [
     "tasks",
