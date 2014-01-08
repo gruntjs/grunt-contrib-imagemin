@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.4.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin v0.4.1 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify PNG, JPEG and GIF images
 
@@ -116,6 +116,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2014-01-08   v0.4.1   Prevent "Maximum call stack size exceeded". Speed up loading this task by lazy requiring bin deps.
  * 2013-11-22   v0.4.0   The `pngquant` option is now `false` by default instead of `true`.
  * 2013-09-09   v0.3.0   Add `interlace` option for gif files.
  * 2013-08-16   v0.2.0   Add `gifsicle` and `pngquant`. Cache images so only changed images are optimized. Default `optimizationLevel` to `7` and `progressive` to `true`.
@@ -131,4 +132,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Fri Nov 22 2013 19:53:17.*
+*This file was generated on Wed Jan 08 2014 20:04:40.*
