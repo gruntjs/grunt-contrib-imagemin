@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-imagemin",
   "description": "Minify PNG, JPEG and GIF images",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": {
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
