@@ -17,10 +17,10 @@ module.exports = function (grunt) {
     var filesize = require('filesize');
     var chalk = require('chalk');
     var async = require('async');
-    var optipngPath = require('optipng-bin').path;
-    var pngquantPath = require('pngquant-bin').path;
-    var jpegtranPath = require('jpegtran-bin').path;
-    var gifsiclePath = require('gifsicle').path;
+    var optipngPath;
+    var pngquantPath;
+    var jpegtranPath;
+    var gifsiclePath;
     var numCPUs = os.cpus().length;
     var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
     var cacheDir = path.join(tmpdir, 'grunt-contrib-imagemin.cache');
@@ -111,8 +111,10 @@ module.exports = function (grunt) {
                 grunt.file.copy(cachePath, dest);
                 processed();
             } else if (path.extname(src).toLowerCase() === '.png') {
+                optipngPath = optipngPath || require('optipng-bin').path;
                 if (options.pngquant) {
                     var tmpDest = dest + '.tmp';
+                    pngquantPath = pngquantPath || require('pngquant-bin').path;
 
                     cp = grunt.util.spawn({
                         cmd: pngquantPath,
@@ -144,11 +146,13 @@ module.exports = function (grunt) {
                     }, processed);
                 }
             } else if (['.jpg', '.jpeg'].indexOf(path.extname(src).toLowerCase()) !== -1) {
+                jpegtranPath = jpegtranPath || require('jpegtran-bin').path;
                 cp = grunt.util.spawn({
                     cmd: jpegtranPath,
                     args: jpegtranArgs.concat(['-outfile', dest, src])
                 }, processed);
             } else if (path.extname(src).toLowerCase() === '.gif') {
+                gifsiclePath = gifsiclePath || require('gifsicle').path;
                 cp = grunt.util.spawn({
                     cmd: gifsiclePath,
                     args: gifsicleArgs.concat(['-o', dest, src])
