@@ -113,6 +113,18 @@ grunt.loadNpmTasks('grunt-contrib-imagemin');
 grunt.registerTask('default', ['imagemin']);
 ```
 
+### Cache
+
+Minimized images will be cached to `os.tmpdir()` directory by default, user can use environment variable `GRUNT_IMAGEMIN_CACHE` to specific another directory to store cached images:
+
+```shell
+echo "export GRUNT_IMAGEMIN_CACHE=$USER/.grunt-images" >> ~/.bash_profile && . ~/.bash_profile
+```
+
+or set this environment variable inline:
+```shell
+GRUNT_IMAGEMIN_CACHE=~/.grunt-images grunt imagemin
+```
 
 ## Release History
 
