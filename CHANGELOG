@@ -1,3 +1,7 @@
+v0.5.0:
+  date: 2014-01-13
+  changes:
+    - Extract the logic into an external lib [image-min](https://github.com/kevva/image-min).
 v0.4.1:
   date: 2014-01-08
   changes:
