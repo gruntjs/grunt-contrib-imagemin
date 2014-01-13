@@ -22,8 +22,12 @@ module.exports = function (grunt) {
     var jpegtranPath;
     var gifsiclePath;
     var numCPUs = os.cpus().length;
-    var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
-    var cacheDir = path.join(tmpdir, 'grunt-contrib-imagemin.cache');
+
+    var cacheDir = process.env.GRUNT_IMAGEMIN_CACHE;
+    if (!cacheDir) {
+        var tmpdir = os.tmpdir ? os.tmpdir() : os.tmpDir();
+        cacheDir = path.join(tmpdir, 'grunt-contrib-imagemin.cache');
+    }
 
     function hashFile(filePath) {
         var content = grunt.file.read(filePath);
