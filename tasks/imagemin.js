@@ -1,12 +1,9 @@
 'use strict';
-
+var os = require('os');
 var async = require('async');
 var chalk = require('chalk');
 var filesize = require('filesize');
-var fs = require('fs');
 var imagemin = require('image-min');
-var os = require('os');
-var path = require('path');
 
 /*
  * grunt-contrib-imagemin
@@ -17,7 +14,7 @@ var path = require('path');
  */
 
 module.exports = function (grunt) {
-    grunt.registerMultiTask('imagemin', 'Minify GIF, JPEG and PNG images', function () {
+    grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG and GIF images', function () {
         var done = this.async();
         var self = this;
         var totalSaved = 0;
