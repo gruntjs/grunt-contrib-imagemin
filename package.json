@@ -6,7 +6,10 @@
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
-  "repository": "gruntjs/grunt-contrib-imagemin",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gruntjs/grunt-contrib-imagemin.git"
+  },
   "licenses": [
     {
       "type": "MIT",
