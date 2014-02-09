@@ -24,9 +24,13 @@ module.exports = function (grunt) {
       progressive: true
     });
 
+    grunt.event.emit("grunt_contribimgmin_init", self.files.length);
+
     async.forEachLimit(this.files, os.cpus().length, function (file, next) {
       imagemin(file.src[0], file.dest, options, function (err, data) {
         var msg;
+        // do it in fist to let it take over
+        grunt.event.emit("grunt_contribimgmin_item_done", self.files.length, file, err, data);
 
         if (err) {
           grunt.warn(err);
@@ -44,6 +48,9 @@ module.exports = function (grunt) {
         process.nextTick(next);
       });
     }, function (err) {
+      // do it in fist to let it take over
+      grunt.event.emit("grunt_contribimgmin_job_done", self.files.length, err);
+
       if (err) {
         grunt.warn(err);
       }
