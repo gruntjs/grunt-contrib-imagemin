@@ -47,29 +47,3 @@ Default: `false`
 Whether to enable pngquant compression.
 
 > pngquant is a command-line utility for converting 24/32-bit PNG images to paletted (8-bit) PNGs. The conversion reduces file sizes significantly (often as much as 70%) and preserves full alpha transparency.
-
-
-## cache
-
-Type: `Boolean`
-Default: `true`
-
-Whether to enable underlying image-min cache.
-
-
-## outputFormat
-
-Type: `text`
-Default: `text`
-Accepted: `(text|progress)`
-
-If outputFormat is progress, then console output display a progress bar instead of text.
-
-
-## barFormat
-
-Type: `text`
-Default: `minified=[:current/:total] elapsed=[:elapseds] sprint=[:percent] eta=[:etas] [:bar]`
-
-If outputFormat is progress, then the progress bar is displayed given that pattern.
-see more https://github.com/visionmedia/node-progress

@@ -14,53 +14,53 @@ var imagemin = require('image-min');
  */
 
 module.exports = function (grunt) {
-  grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG and GIF images', function () {
-    var done = this.async();
-    var self = this;
-    var totalSaved = 0;
-    var options = this.options({
-      cache: true,
-      optimizationLevel: 7,
-      progressive: true
+    grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG and GIF images', function () {
+        var done = this.async();
+        var self = this;
+        var totalSaved = 0;
+        var options = this.options({
+            cache: true,
+            optimizationLevel: 7,
+            progressive: true
+        });
+
+        grunt.event.emit("grunt_contribimgmin_init", self.files.length);
+
+        async.forEachLimit(this.files, os.cpus().length, function (file, next) {
+            imagemin(file.src[0], file.dest, options, function (err, data) {
+                var msg;
+                // do it in fist to let it take over
+                grunt.event.emit("grunt_contribimgmin_item_done", self.files.length, file, err, data);
+
+                if (err) {
+                    grunt.warn(err);
+                }
+
+                totalSaved += data.diffSizeRaw;
+
+                if (data.diffSizeRaw < 10) {
+                    msg = 'already optimized';
+                } else {
+                    msg = 'saved ' + data.diffSize;
+                }
+
+                grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
+                process.nextTick(next);
+            });
+        }, function (err) {
+            // do it in fist to let it take over
+            grunt.event.emit("grunt_contribimgmin_job_done", self.files.length, err);
+
+            if (err) {
+                grunt.warn(err);
+            }
+
+            var msg  = 'Minified ' + self.files.length + ' ';
+            msg += self.files.length === 1 ? 'image' : 'images';
+            msg += chalk.gray(' (saved ' + filesize(totalSaved) + ')');
+
+            grunt.log.writeln(msg);
+            done();
+        });
     });
-
-    grunt.event.emit("grunt_contribimgmin_init", self.files.length);
-
-    async.forEachLimit(this.files, os.cpus().length, function (file, next) {
-      imagemin(file.src[0], file.dest, options, function (err, data) {
-        var msg;
-        // do it in fist to let it take over
-        grunt.event.emit("grunt_contribimgmin_item_done", self.files.length, file, err, data);
-
-        if (err) {
-          grunt.warn(err);
-        }
-
-        totalSaved += data.diffSizeRaw;
-
-        if (data.diffSizeRaw < 10) {
-          msg = 'already optimized';
-        } else {
-          msg = 'saved ' + data.diffSize;
-        }
-
-        grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
-        process.nextTick(next);
-      });
-    }, function (err) {
-      // do it in fist to let it take over
-      grunt.event.emit("grunt_contribimgmin_job_done", self.files.length, err);
-
-      if (err) {
-        grunt.warn(err);
-      }
-
-      var msg  = 'Minified ' + self.files.length + ' ';
-      msg += self.files.length === 1 ? 'image' : 'images';
-      msg += chalk.gray(' (saved ' + filesize(totalSaved) + ')');
-
-      grunt.log.writeln(msg);
-      done();
-    });
-  });
 };
