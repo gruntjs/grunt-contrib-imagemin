@@ -56,8 +56,8 @@ module.exports = function (grunt) {
             }
 
             var msg  = 'Minified ' + self.files.length + ' ';
-            msg += self.files.length === 1 ? 'image' : 'images';
-            msg += chalk.gray(' (saved ' + filesize(totalSaved) + ')');
+                msg += self.files.length === 1 ? 'image' : 'images';
+                msg += chalk.gray(' (saved ' + filesize(totalSaved) + ')');
 
             grunt.log.writeln(msg);
             done();
