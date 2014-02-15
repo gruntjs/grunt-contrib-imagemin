@@ -23,7 +23,7 @@
     "async": "~0.2.9",
     "chalk": "~0.4.0",
     "filesize": "~2.0.0",
-    "image-min": "~0.1.1"
+    "image-min": "~0.1.3"
   },
   "devDependencies": {
     "cache-file": "~0.1.2",
