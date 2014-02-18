@@ -1,6 +1,6 @@
 ## Example config
 
-You can either map your files statically or [dynamically](https://github.com/gruntjs/grunt/wiki/Configuring-tasks#building-the-files-object-dynamically).
+You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).
 
 ```javascript
 grunt.initConfig({
