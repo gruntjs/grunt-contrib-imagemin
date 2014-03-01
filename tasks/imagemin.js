@@ -9,7 +9,7 @@ var imagemin = require('image-min');
  * grunt-contrib-imagemin
  * http://gruntjs.com/
  *
- * Copyright (c) 2013 Sindre Sorhus, contributors
+ * Copyright (c) 2014 Sindre Sorhus, contributors
  * Licensed under the MIT license.
  */
 
