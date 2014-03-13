@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 if (data.diffSizeRaw < 10) {
                     msg = 'already optimized';
                 } else {
-                    msg = 'saved ' + data.diffSize;
+                    msg = 'saved ' + data.diffSize + ' ~ ' + parseInt(100*data.diffSizeRaw/data.origSizeRaw, 10) + '%';
                 }
 
                 grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
