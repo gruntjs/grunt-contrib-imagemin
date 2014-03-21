@@ -25,14 +25,6 @@ exports.imagemin = {
 
         test.done();
     },
-    cachePng: function (test) {
-        test.expect(1);
-
-        var original = path.join(__dirname, 'fixtures/test.png');
-        test.ok(cache.check(original, { name: 'imagemin' }), 'should cache PNG images');
-
-        test.done();
-    },
     minifyJpg: function (test) {
         test.expect(1);
 
@@ -51,14 +43,6 @@ exports.imagemin = {
 
         test.done();
     },
-    cacheJpg: function (test) {
-        test.expect(1);
-
-        var original = path.join(__dirname, 'fixtures/test.jpg');
-        test.ok(cache.check(original, { name: 'imagemin' }), 'should cache JPGimages');
-
-        test.done();
-    },
     minifyGif: function (test) {
         test.expect(1);
 
@@ -74,14 +58,6 @@ exports.imagemin = {
         var actual = fs.statSync('tmp/test-uppercase.GIF').size;
         var original = fs.statSync('test/fixtures/test-uppercase.GIF').size;
         test.ok(actual < original, 'should minify uppercase extension GIF images');
-
-        test.done();
-    },
-    cacheGif: function (test) {
-        test.expect(1);
-
-        var original = path.join(__dirname, 'fixtures/test.gif');
-        test.ok(cache.check(original, { name: 'imagemin' }), 'should cache GIF images');
 
         test.done();
     }

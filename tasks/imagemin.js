@@ -1,5 +1,7 @@
 'use strict';
+var fs = require('fs');
 var os = require('os');
+var path = require('path');
 var async = require('async');
 var chalk = require('chalk');
 var filesize = require('filesize');
@@ -16,6 +18,7 @@ var imagemin = require('image-min');
 module.exports = function (grunt) {
     grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG and GIF images', function () {
         var done = this.async();
+        var msg;
         var self = this;
         var totalSaved = 0;
         var options = this.options({
@@ -25,24 +28,30 @@ module.exports = function (grunt) {
         });
 
         async.forEachLimit(this.files, os.cpus().length, function (file, next) {
-            imagemin(file.src[0], file.dest, options, function (err, data) {
-                var msg;
+            options.ext = path.extname(file.src[0]);
 
-                if (err) {
-                    grunt.warn(err);
-                }
+            fs.createReadStream(file.src[0])
+                .pipe(imagemin(options)
+                    .on('error', function (err) {
+                        grunt.warn(err);
+                    })
+                    .on('close', function (data) {
+                        totalSaved += data.diffSizeRaw;
 
-                totalSaved += data.diffSizeRaw;
-
-                if (data.diffSizeRaw < 10) {
-                    msg = 'already optimized';
-                } else {
-                    msg = 'saved ' + data.diffSize + ' - ' + (data.diffSizeRaw / data.origSizeRaw * 100).toFixed() + '%';
-                }
-
-                grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
-                process.nextTick(next);
-            });
+                        if (data.diffSizeRaw < 10) {
+                            msg = 'already optimized';
+                        } else {
+                            msg = 'saved ' + data.diffSize + ' - ' + (data.diffSizeRaw / data.origSizeRaw * 100).toFixed() + '%';
+                        }
+                    }))
+                .pipe(fs.createWriteStream(file.dest)
+                    .on('error', function (err) {
+                        grunt.warn(err);
+                    })
+                    .on('close', function () {
+                        grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
+                        next();
+                    }));
         }, function (err) {
             if (err) {
                 grunt.warn(err);
