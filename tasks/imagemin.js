@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         var self = this;
         var totalSaved = 0;
         var options = this.options({
-            cache: true,
+            cache: false,
             optimizationLevel: 7,
             progressive: true
         });
