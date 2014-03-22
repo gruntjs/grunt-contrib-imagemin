@@ -1,3 +1,8 @@
+v0.6.0-pre:
+  date: 2014-03-22
+  changes:
+    - Updated "image-min" to 0.2
+    - Added percentage to size saved view - fixes #167
 v0.5.0:
   date: 2014-01-13
   changes:
