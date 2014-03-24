@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "cache-file": "latest",
-    "grunt": "latest",
+    "grunt": "~0.4.0",
     "grunt-contrib-clean": "latest",
     "grunt-contrib-internal": "latest",
     "grunt-contrib-jshint": "latest",
@@ -35,7 +35,7 @@
     "time-grunt": "latest"
   },
   "peerDependencies": {
-    "grunt": "latest"
+    "grunt": "~0.4.0"
   },
   "keywords": [
     "compress",
