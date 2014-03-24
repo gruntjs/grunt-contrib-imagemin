@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 
         async.forEachLimit(this.files, os.cpus().length, function (file, next) {
             options.ext = path.extname(file.src[0]);
-            
+
             if (!options.ext)
             {
                 fs.mkdir(file.dest, function (err) {
@@ -38,7 +38,6 @@ module.exports = function (grunt) {
                     }
 
                     grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' -> ' + file.dest));
-
                     return next();
                 });
 
