@@ -28,10 +28,27 @@ module.exports = function (grunt) {
 
         async.forEachLimit(this.files, os.cpus().length, function (file, next) {
             options.ext = path.extname(file.src[0]);
+            
+            if (!options.ext)
+            {
+                fs.mkdir(file.dest, function (err) {
+                    if (err)
+                    {
+                        return grunt.warn(err);
+                    }
+
+                    grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' -> ' + file.dest));
+
+                    return next();
+                });
+
+                return;
+            }
 
             fs.createReadStream(file.src[0])
                 .pipe(imagemin(options)
                     .on('error', function (err) {
+                        console.log("imgmin error");
                         grunt.warn(err);
                     })
                     .on('close', function (data) {
