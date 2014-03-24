@@ -47,7 +47,6 @@ module.exports = function (grunt) {
             fs.createReadStream(file.src[0])
                 .pipe(imagemin(options)
                     .on('error', function (err) {
-                        console.log("imgmin error");
                         grunt.warn(err);
                     })
                     .on('close', function (data) {
