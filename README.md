@@ -134,4 +134,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Sat Mar 22 2014 12:33:28.*
+*This file was generated on Tue Mar 25 2014 01:30:37.*
