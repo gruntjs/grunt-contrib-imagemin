@@ -19,15 +19,14 @@ var imagemin = require('image-min');
 module.exports = function (grunt) {
     grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG and GIF images', function () {
         var done = this.async();
-        var msg;
-        var self = this;
+        var files = this.files;
         var totalSaved = 0;
         var options = this.options({
             optimizationLevel: 7,
             progressive: true
         });
 
-        async.forEachLimit(this.files, os.cpus().length, function (file, next) {
+        async.forEachLimit(files, os.cpus().length, function (file, next) {
             options.ext = path.extname(file.src[0]);
 
             // filter out dirs
@@ -36,11 +35,11 @@ module.exports = function (grunt) {
             }
 
             mkdirp(path.dirname(file.dest), function () {
+                var msg;
+
                 fs.createReadStream(file.src[0])
                     .pipe(imagemin(options)
-                        .on('error', function (err) {
-                            grunt.warn(err);
-                        })
+                        .on('error', grunt.warn.bind(grunt))
                         .on('close', function (data) {
                             totalSaved += data.diffSizeRaw;
 
@@ -51,9 +50,7 @@ module.exports = function (grunt) {
                             }
                         }))
                     .pipe(fs.createWriteStream(file.dest)
-                        .on('error', function (err) {
-                            grunt.warn(err);
-                        })
+                        .on('error', grunt.warn.bind(grunt))
                         .on('close', function () {
                             grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
                             next();
@@ -64,8 +61,8 @@ module.exports = function (grunt) {
                 grunt.warn(err);
             }
 
-            var msg  = 'Minified ' + self.files.length + ' ';
-                msg += self.files.length === 1 ? 'image' : 'images';
+            var msg  = 'Minified ' + files.length + ' ';
+                msg += files.length === 1 ? 'image' : 'images';
                 msg += chalk.gray(' (saved ' + prettyBytes(totalSaved) + ')');
 
             grunt.log.writeln(msg);
