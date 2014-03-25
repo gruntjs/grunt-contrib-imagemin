@@ -6,6 +6,7 @@ var async = require('async');
 var chalk = require('chalk');
 var filesize = require('filesize');
 var imagemin = require('image-min');
+var mkdirp = require('mkdirp');
 
 /*
  * grunt-contrib-imagemin
@@ -27,9 +28,22 @@ module.exports = function (grunt) {
         });
 
         async.forEachLimit(this.files, os.cpus().length, function (file, next) {
-            options.ext = path.extname(file.src[0]);
+            if (!file.src[0])
+            {
+                return next();
+            }
 
-            fs.createReadStream(file.src[0])
+            var ext = path.extname(file.src[0]);
+
+            var run = function () {
+                if (!ext)
+                {
+                    return next();
+                }
+
+                options.ext = ext;
+
+                fs.createReadStream(file.src[0])
                 .pipe(imagemin(options)
                     .on('error', function (err) {
                         grunt.warn(err);
@@ -51,6 +65,26 @@ module.exports = function (grunt) {
                         grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
                         next();
                     }));
+            };
+
+            var dir = file.dest;
+            if (ext)
+            {
+                dir = path.dirname(file.dest);
+            }
+
+            fs.stat(dir, function (err, stat) {
+                if (err)
+                {
+                    mkdirp(dir, function (err) {
+                        run();
+                    });
+                }
+                else
+                {
+                    run();
+                }
+            });
         }, function (err) {
             if (err) {
                 grunt.warn(err);
