@@ -22,9 +22,9 @@
   "dependencies": {
     "async": "~0.2.9",
     "chalk": "~0.4.0",
-    "filesize": "~2.0.0",
     "image-min": "~0.2.0",
-    "mkdirp": "^0.3.5"
+    "mkdirp": "^0.3.5",
+    "pretty-bytes": "^0.1.0"
   },
   "devDependencies": {
     "cache-file": "~0.1.2",

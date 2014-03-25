@@ -4,7 +4,7 @@ var os = require('os');
 var path = require('path');
 var async = require('async');
 var chalk = require('chalk');
-var filesize = require('filesize');
+var prettyBytes = require('pretty-bytes');
 var mkdirp = require('mkdirp');
 var imagemin = require('image-min');
 
@@ -66,7 +66,7 @@ module.exports = function (grunt) {
 
             var msg  = 'Minified ' + self.files.length + ' ';
                 msg += self.files.length === 1 ? 'image' : 'images';
-                msg += chalk.gray(' (saved ' + filesize(totalSaved) + ')');
+                msg += chalk.gray(' (saved ' + prettyBytes(totalSaved) + ')');
 
             grunt.log.writeln(msg);
             done();
