@@ -23,22 +23,19 @@ module.exports = function (grunt) {
       }
     },
     clean: {
-      test: ['tmp']
+      tmp: ['tmp'],
+      chunk: ['test/fixtures/chunk']
     },
     imagemin: {
       dist: {
-        files: {
-          'tmp/test.png': 'test/fixtures/test.png',
-          'tmp/test.jpg': 'test/fixtures/test.jpg',
-          'tmp/test.gif': 'test/fixtures/test.gif',
-          'tmp/test-uppercase.PNG': 'test/fixtures/test-uppercase.PNG',
-          'tmp/test-uppercase.JPG': 'test/fixtures/test-uppercase.JPG',
-          'tmp/test-uppercase.GIF': 'test/fixtures/test-uppercase.GIF'
-        }
+        files: [
+          { src: ['**/*'], dest: 'tmp/', expand: true, cwd: 'test/fixtures/' }
+        ]
       }
     },
     nodeunit: {
-      tests: ['test/test.js']
+      tests: ['test/test.js'],
+      chunk: ['test/chunk.js']
     }
   });
 
@@ -54,10 +51,14 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean',
     'mkdir:tmp',
+    'mkdir:test/fixtures/chunk',
+    'nodeunit:chunk',
     'imagemin',
-    'nodeunit',
+    'nodeunit:tests',
     'clean'
   ]);
 
   grunt.registerTask('default', ['test', 'build-contrib']);
+
+  grunt.registerTask('chunk', ['clean:chunk', 'mkdir:test/fixtures/chunk', 'nodeunit:chunk']);
 };
