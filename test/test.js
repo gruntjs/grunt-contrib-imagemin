@@ -60,5 +60,12 @@ exports.imagemin = {
         test.ok(actual < original, 'should minify uppercase extension GIF images');
 
         test.done();
+    },
+    nestedDirs: function (test) {
+        test.expect(1);
+
+        test.ok(fs.existsSync('tmp/nested/nested/test.png'), 'should support nested dest dir');
+
+        test.done();
     }
 };
