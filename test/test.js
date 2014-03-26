@@ -1,6 +1,4 @@
 'use strict';
-
-var cache = require('cache-file');
 var fs = require('fs');
 var grunt = require('grunt');
 var os = require('os');
