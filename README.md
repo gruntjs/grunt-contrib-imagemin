@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.6.0-pre [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin v0.6.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify PNG, JPEG and GIF images
 
@@ -116,7 +116,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
- * 2014-03-22   v0.6.0-pre   Updated "image-min" to 0.2 Added percentage to size saved view - fixes
+ * 2014-03-28   v0.6.0   Updated "image-min" to 0.2 Added percentage to size saved view - fixes cache option removed. Adds "pretty-bytes".
  * 2014-01-13   v0.5.0   Extract the logic into an external lib [image-min](https://github.com/kevva/image-min).
  * 2014-01-08   v0.4.1   Prevent "Maximum call stack size exceeded". Speed up loading this task by lazy requiring bin deps.
  * 2013-11-22   v0.4.0   The `pngquant` option is now `false` by default instead of `true`.
@@ -134,4 +134,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Fri Mar 28 2014 18:10:05.*
+*This file was generated on Fri Mar 28 2014 19:43:56.*

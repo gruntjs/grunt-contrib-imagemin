@@ -1,8 +1,10 @@
-v0.6.0-pre:
-  date: 2014-03-22
+v0.6.0:
+  date: 2014-03-28
   changes:
     - Updated "image-min" to 0.2
-    - Added percentage to size saved view - fixes #167
+    - Added percentage to size saved view - fixes #167.
+    - cache option removed.
+    - Adds "pretty-bytes".
 v0.5.0:
   date: 2014-01-13
   changes:
