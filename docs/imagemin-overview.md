@@ -2,4 +2,4 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 Minify images using [OptiPNG](http://optipng.sourceforge.net), [pngquant](http://pngquant.org), [jpegtran](http://jpegclub.org/jpegtran/) and [gifsicle](http://www.lcdf.org/gifsicle).
 
-Images will be cached and only minified again if they change.
+We recommend using [grunt-newer](https://github.com/tschaub/grunt-newer) to only process changed files as minifying images can be quite slow.
