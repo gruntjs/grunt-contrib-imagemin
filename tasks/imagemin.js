@@ -27,6 +27,7 @@ module.exports = function (grunt) {
         });
 
         async.forEachLimit(files, os.cpus().length, function (file, next) {
+            var msg;
             options.ext = path.extname(file.src[0]);
 
             // filter out dirs
@@ -34,28 +35,26 @@ module.exports = function (grunt) {
                 return next();
             }
 
-            mkdirp(path.dirname(file.dest), function () {
-                var msg;
+            mkdirp.sync(path.dirname(file.dest));
 
-                fs.createReadStream(file.src[0])
-                    .pipe(imagemin(options)
-                        .on('error', grunt.warn.bind(grunt))
-                        .on('close', function (data) {
-                            totalSaved += data.diffSizeRaw;
+            fs.createReadStream(file.src[0])
+                .pipe(imagemin(options)
+                    .on('error', grunt.warn.bind(grunt))
+                    .on('close', function (data) {
+                        totalSaved += data.diffSizeRaw;
 
-                            if (data.diffSizeRaw < 10) {
-                                msg = 'already optimized';
-                            } else {
-                                msg = 'saved ' + data.diffSize + ' - ' + (data.diffSizeRaw / data.origSizeRaw * 100).toFixed() + '%';
-                            }
-                        }))
-                    .pipe(fs.createWriteStream(file.dest)
-                        .on('error', grunt.warn.bind(grunt))
-                        .on('close', function () {
-                            grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
-                            next();
-                        }));
-            });
+                        if (data.diffSizeRaw < 10) {
+                            msg = 'already optimized';
+                        } else {
+                            msg = 'saved ' + data.diffSize + ' - ' + (data.diffSizeRaw / data.origSizeRaw * 100).toFixed() + '%';
+                        }
+                    }))
+                .pipe(fs.createWriteStream(file.dest)
+                    .on('error', grunt.warn.bind(grunt))
+                    .on('close', function () {
+                        grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
+                        process.nextTick(next);
+                    }));
         }, function (err) {
             if (err) {
                 grunt.warn(err);
