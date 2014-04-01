@@ -1,3 +1,7 @@
+v0.6.1:
+  date: 2014-04-01
+  changes:
+    - Fix problem with corrupt images being created
 v0.6.0:
   date: 2014-03-28
   changes:
