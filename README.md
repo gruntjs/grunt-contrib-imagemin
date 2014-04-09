@@ -81,6 +81,14 @@ Whether to enable pngquant compression.
 
 > pngquant is a command-line utility for converting 24/32-bit PNG images to paletted (8-bit) PNGs. The conversion reduces file sizes significantly (often as much as 70%) and preserves full alpha transparency.
 
+
+#### parallelProcesses
+
+Type: `Int`
+Default: `os.cpus().length`
+
+Restrict parallel processes to the specified number, try setting this value to `1` or `2` if your compressed images are corrupt. This problem has been obeserved on some machines running on multicore processors (8+)
+
 #### Example config
 
 You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).

@@ -23,10 +23,11 @@ module.exports = function (grunt) {
         var totalSaved = 0;
         var options = this.options({
             optimizationLevel: 7,
-            progressive: true
+            progressive: true,
+            parallelProcesses : os.cpus().length
         });
 
-        async.forEachLimit(files, os.cpus().length, function (file, next) {
+        async.forEachLimit(files, options.parallelProcesses, function (file, next) {
             var msg;
             options.ext = path.extname(file.src[0]);
 
