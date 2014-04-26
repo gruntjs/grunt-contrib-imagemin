@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.6.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-imagemin v0.7.0-pre [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Minify PNG, JPEG and GIF images
 
@@ -72,25 +72,28 @@ Default: `true`
 Interlace gif for progressive rendering.
 
 
-#### pngquant
+#### configure
 
-Type: `Boolean`
-Default: `false`
+Type: `Function`
+Default: `null`
 
-Whether to enable pngquant compression.
-
-> pngquant is a command-line utility for converting 24/32-bit PNG images to paletted (8-bit) PNGs. The conversion reduces file sizes significantly (often as much as 70%) and preserves full alpha transparency.
+Accepts a function that gives you the ability to interact with `imagemin` before optimizing. Useful for adding on plugins.
 
 #### Example config
 
 You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).
 
 ```javascript
+var mozjpeg = require('imagemin-mozjpeg');
+
 grunt.initConfig({
   imagemin: {                          // Task
     static: {                          // Target
       options: {                       // Target options
-        optimizationLevel: 3
+        optimizationLevel: 3,
+        configure: function (imagemin) {
+            imagemin.use(mozjpeg());
+        }
       },
       files: {                         // Dictionary of files
         'dist/img.png': 'src/img.png', // 'destination': 'source'
@@ -135,4 +138,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Tue Apr 08 2014 18:22:22.*
+*This file was generated on Sat Apr 26 2014 16:32:28.*
