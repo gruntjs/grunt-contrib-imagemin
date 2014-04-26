@@ -6,7 +6,7 @@ var async = require('async');
 var chalk = require('chalk');
 var prettyBytes = require('pretty-bytes');
 var mkdirp = require('mkdirp');
-var imagemin = require('image-min');
+var Imagemin = require('image-min');
 
 /*
  * grunt-contrib-imagemin
@@ -22,39 +22,42 @@ module.exports = function (grunt) {
         var files = this.files;
         var totalSaved = 0;
         var options = this.options({
-            optimizationLevel: 7,
+            interlaced: true,
+            optimizationLevel: 3,
             progressive: true
         });
 
         async.forEachLimit(files, os.cpus().length, function (file, next) {
             var msg;
-            options.ext = path.extname(file.src[0]);
+            var imagemin = new Imagemin()
+                .src(file.src[0])
+                .dest(file.dest)
+                .use(Imagemin.jpegtran(options.progressive))
+                .use(Imagemin.gifsicle(options.interlaced))
+                .use(Imagemin.optipng(options.optimizationLevel));
 
-            // filter out dirs
-            if (!options.ext) {
-                return next();
+            if (options.configure) {
+                options.configure(imagemin);
             }
 
-            mkdirp.sync(path.dirname(file.dest));
+            imagemin.optimize(function (err, data) {
+                if (err) {
+                    grunt.warn(err);
+                }
 
-            fs.createReadStream(file.src[0])
-                .pipe(imagemin(options)
-                    .on('error', grunt.warn.bind(grunt))
-                    .on('close', function (data) {
-                        totalSaved += data.diffSizeRaw;
+                var origSize = fs.statSync(file.src[0]).size;
+                var diffSize = origSize - data.contents.length;
+                totalSaved += diffSize;
 
-                        if (data.diffSizeRaw < 10) {
-                            msg = 'already optimized';
-                        } else {
-                            msg = 'saved ' + data.diffSize + ' - ' + (data.diffSizeRaw / data.origSizeRaw * 100).toFixed() + '%';
-                        }
-                    }))
-                .pipe(fs.createWriteStream(file.dest)
-                    .on('error', grunt.warn.bind(grunt))
-                    .on('close', function () {
-                        grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
-                        process.nextTick(next);
-                    }));
+                if (diffSize < 10) {
+                    msg = 'already optimized';
+                } else {
+                    msg = 'saved ' + prettyBytes(diffSize) + ' - ' + (diffSize / origSize * 100).toFixed() + '%';
+                }
+
+                grunt.log.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
+                process.nextTick(next);
+            });
         }, function (err) {
             if (err) {
                 grunt.warn(err);

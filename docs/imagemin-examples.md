@@ -3,11 +3,16 @@
 You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).
 
 ```javascript
+var mozjpeg = require('imagemin-mozjpeg');
+
 grunt.initConfig({
   imagemin: {                          // Task
     static: {                          // Target
       options: {                       // Target options
-        optimizationLevel: 3
+        optimizationLevel: 3,
+        configure: function (imagemin) {
+            imagemin.use(mozjpeg());
+        }
       },
       files: {                         // Dictionary of files
         'dist/img.png': 'src/img.png', // 'destination': 'source'

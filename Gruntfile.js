@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: 'test/fixtures',
-          src: '**/*',
+          src: '**/*.{gif,GIF,jpg,JPG,png,PNG}',
           dest: 'tmp'
         }]
       }

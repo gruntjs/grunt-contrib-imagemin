@@ -39,11 +39,9 @@ Default: `true`
 Interlace gif for progressive rendering.
 
 
-## pngquant
+## configure
 
-Type: `Boolean`
-Default: `false`
+Type: `Function`
+Default: `null`
 
-Whether to enable pngquant compression.
-
-> pngquant is a command-line utility for converting 24/32-bit PNG images to paletted (8-bit) PNGs. The conversion reduces file sizes significantly (often as much as 70%) and preserves full alpha transparency.
+Accepts a function that gives you the ability to interact with `imagemin` before optimizing. Useful for adding on plugins.
