@@ -1,6 +1,6 @@
-# grunt-contrib-imagemin v0.7.0-pre [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-imagemin v0.7.0-pre [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
-> Minify PNG, JPEG and GIF images using [imagemin](https://github.com/kevva/imagemin)
+> Minify images
 
 
 
@@ -25,9 +25,14 @@ grunt.loadNpmTasks('grunt-contrib-imagemin');
 ## Imagemin task
 _Run this task with the `grunt imagemin` command._
 
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+Minify images using [imagemin](https://github.com/kevva/imagemin).
 
-Minify images using [OptiPNG](http://optipng.sourceforge.net), [pngquant](http://pngquant.org), [jpegtran](http://jpegclub.org/jpegtran/) and [gifsicle](http://www.lcdf.org/gifsicle).
+Comes bundled with the following optimizers:
+
+- [gifsicle](https://github.com/kevva/imagemin-gifsicle) — *Compress GIF images*
+- [jpegtran](https://github.com/kevva/imagemin-jpegtran) — *Compress JPEG images*
+- [optipng](https://github.com/kevva/imagemin-optipng) — *Compress PNG images*
+- [svgo](https://github.com/kevva/imagemin-svgo) — *Compress SVG images*
 
 We recommend using [grunt-newer](https://github.com/tschaub/grunt-newer) to only process changed files as minifying images can be quite slow.
 
@@ -36,10 +41,10 @@ We recommend using [grunt-newer](https://github.com/tschaub/grunt-newer) to only
 Options will only apply to the relevant files, so you don't need separate targets for png/jpg.
 
 
-#### optimizationLevel *(png only)*
+#### optimizationLevel *(png)*
 
-Type: `Number`
-Default: `7`
+Type: `Number`  
+Default: `3`
 
 Select optimization level between `0` and `7`.
 
@@ -56,34 +61,34 @@ Level and trials:
 7. 240 trials
 
 
-#### progressive *(jpg only)*
+#### progressive *(jpg)*
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `true`
 
 Lossless conversion to progressive.
 
 
-#### interlaced *(gif only)*
+#### interlaced *(gif)*
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `true`
 
 Interlace gif for progressive rendering.
 
 
-#### configure
+#### use
 
-Type: `Function`
+Type: `Array`  
 Default: `null`
 
-Accepts a function that gives you the ability to interact with `imagemin` before optimizing. Useful for adding on plugins.
+Additional [plugins](https://npmjs.org/keyword/imageminplugin) to use with imagemin.
 
 #### Example config
 
 You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).
 
-```javascript
+```js
 var mozjpeg = require('imagemin-mozjpeg');
 
 grunt.initConfig({
@@ -91,9 +96,7 @@ grunt.initConfig({
     static: {                          // Target
       options: {                       // Target options
         optimizationLevel: 3,
-        configure: function (imagemin) {
-            imagemin.use(mozjpeg());
-        }
+        use: [mozjpeg()]
       },
       files: {                         // Dictionary of files
         'dist/img.png': 'src/img.png', // 'destination': 'source'
@@ -138,4 +141,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Sat Apr 26 2014 16:32:28.*
+*This file was generated on Tue Apr 29 2014 16:46:44.*

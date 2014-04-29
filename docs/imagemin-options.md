@@ -3,10 +3,10 @@
 Options will only apply to the relevant files, so you don't need separate targets for png/jpg.
 
 
-## optimizationLevel *(png only)*
+## optimizationLevel *(png)*
 
-Type: `Number`
-Default: `7`
+Type: `Number`  
+Default: `3`
 
 Select optimization level between `0` and `7`.
 
@@ -23,17 +23,17 @@ Level and trials:
 7. 240 trials
 
 
-## progressive *(jpg only)*
+## progressive *(jpg)*
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `true`
 
 Lossless conversion to progressive.
 
 
-## interlaced *(gif only)*
+## interlaced *(gif)*
 
-Type: `Boolean`
+Type: `Boolean`  
 Default: `true`
 
 Interlace gif for progressive rendering.
@@ -41,7 +41,7 @@ Interlace gif for progressive rendering.
 
 ## use
 
-Type: `Array`
+Type: `Array`  
 Default: `null`
 
 Additional [plugins](https://npmjs.org/keyword/imageminplugin) to use with imagemin.
