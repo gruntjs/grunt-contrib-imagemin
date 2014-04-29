@@ -121,7 +121,7 @@ grunt.registerTask('default', ['imagemin']);
 
  * 2014-04-01   v0.6.1   Fix problem with corrupt images being created
  * 2014-03-28   v0.6.0   Updated "image-min" to 0.2 Added percentage to size saved view - fixes cache option removed. Adds "pretty-bytes".
- * 2014-01-13   v0.5.0   Extract the logic into an external lib [image-min](https://github.com/kevva/image-min).
+ * 2014-01-13   v0.5.0   Extract the logic into an external lib [imagemin](https://github.com/kevva/imagemin).
  * 2014-01-08   v0.4.1   Prevent "Maximum call stack size exceeded". Speed up loading this task by lazy requiring bin deps.
  * 2013-11-22   v0.4.0   The `pngquant` option is now `false` by default instead of `true`.
  * 2013-09-09   v0.3.0   Add `interlace` option for gif files.
