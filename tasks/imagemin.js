@@ -6,7 +6,7 @@ var async = require('async');
 var chalk = require('chalk');
 var prettyBytes = require('pretty-bytes');
 var mkdirp = require('mkdirp');
-var Imagemin = require('image-min');
+var Imagemin = require('imagemin');
 
 /*
  * grunt-contrib-imagemin
