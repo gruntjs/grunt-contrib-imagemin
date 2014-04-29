@@ -36,8 +36,8 @@ module.exports = function (grunt) {
                 .use(Imagemin.gifsicle(options.interlaced))
                 .use(Imagemin.optipng(options.optimizationLevel));
 
-            if (options.configure) {
-                options.configure(imagemin);
+            if (options.use) {
+                options.use.forEach(imagemin.use.bind(imagemin));
             }
 
             imagemin.optimize(function (err, data) {

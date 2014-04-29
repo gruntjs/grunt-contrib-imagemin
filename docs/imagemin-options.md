@@ -39,9 +39,9 @@ Default: `true`
 Interlace gif for progressive rendering.
 
 
-## configure
+## use
 
-Type: `Function`
+Type: `Array`
 Default: `null`
 
-Accepts a function that gives you the ability to interact with `imagemin` before optimizing. Useful for adding on plugins.
+Additional [plugins](https://npmjs.org/keyword/imageminplugin) to use with imagemin.

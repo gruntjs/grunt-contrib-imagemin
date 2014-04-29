@@ -10,9 +10,7 @@ grunt.initConfig({
     static: {                          // Target
       options: {                       // Target options
         optimizationLevel: 3,
-        configure: function (imagemin) {
-            imagemin.use(mozjpeg());
-        }
+        use: [mozjpeg()]
       },
       files: {                         // Dictionary of files
         'dist/img.png': 'src/img.png', // 'destination': 'source'
