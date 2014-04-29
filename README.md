@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.7.0-pre [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin v0.7.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify images
 
@@ -122,8 +122,9 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2014-04-29   v0.7.0   Update "imagemin" to 0.4
  * 2014-04-01   v0.6.1   Fix problem with corrupt images being created
- * 2014-03-28   v0.6.0   Updated "image-min" to 0.2 Added percentage to size saved view - fixes cache option removed. Adds "pretty-bytes".
+ * 2014-03-28   v0.6.0   Updated "imagemin" to 0.2 Added percentage to size saved view - fixes cache option removed. Adds "pretty-bytes".
  * 2014-01-13   v0.5.0   Extract the logic into an external lib [imagemin](https://github.com/kevva/imagemin).
  * 2014-01-08   v0.4.1   Prevent "Maximum call stack size exceeded". Speed up loading this task by lazy requiring bin deps.
  * 2013-11-22   v0.4.0   The `pngquant` option is now `false` by default instead of `true`.
@@ -141,4 +142,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Tue Apr 29 2014 16:46:44.*
+*This file was generated on Tue Apr 29 2014 16:48:53.*
