@@ -1,11 +1,9 @@
 'use strict';
 var fs = require('fs');
 var os = require('os');
-var path = require('path');
 var async = require('async');
 var chalk = require('chalk');
 var prettyBytes = require('pretty-bytes');
-var mkdirp = require('mkdirp');
 var Imagemin = require('imagemin');
 
 /*
