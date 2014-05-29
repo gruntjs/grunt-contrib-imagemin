@@ -37,13 +37,14 @@ module.exports = function (grunt) {
             if (options.use) {
                 options.use.forEach(imagemin.use.bind(imagemin));
             }
-
+            
+            var origSize = fs.statSync(file.src[0]).size;
+            
             imagemin.optimize(function (err, data) {
                 if (err) {
                     grunt.warn(err);
                 }
 
-                var origSize = fs.statSync(file.src[0]).size;
                 var diffSize = origSize - data.contents.length;
                 totalSaved += diffSize;
 
