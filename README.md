@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.7.0 [![Build Status](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin v0.7.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Minify images
 
@@ -122,6 +122,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2014-05-31   v0.7.1   Caching original image size before optimization. Remove unused dependencies.
  * 2014-04-29   v0.7.0   Update "imagemin" to 0.4
  * 2014-04-01   v0.6.1   Fix problem with corrupt images being created
  * 2014-03-28   v0.6.0   Updated "imagemin" to 0.2 Added percentage to size saved view - fixes cache option removed. Adds "pretty-bytes".
@@ -142,4 +143,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Tue Apr 29 2014 16:48:53.*
+*This file was generated on Sat May 31 2014 16:32:27.*
