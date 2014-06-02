@@ -30,9 +30,9 @@ module.exports = function (grunt) {
             var imagemin = new Imagemin()
                 .src(file.src[0])
                 .dest(file.dest)
-                .use(Imagemin.jpegtran(options.progressive))
-                .use(Imagemin.gifsicle(options.interlaced))
-                .use(Imagemin.optipng(options.optimizationLevel));
+                .use(Imagemin.jpegtran(options))
+                .use(Imagemin.gifsicle(options))
+                .use(Imagemin.optipng(options));
 
             if (options.use) {
                 options.use.forEach(imagemin.use.bind(imagemin));

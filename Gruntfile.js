@@ -36,7 +36,9 @@ module.exports = function (grunt) {
       }
     },
     nodeunit: {
-      tests: ['test/test.js']
+      tests: ['test/test.js'],
+      // Has dependencies on ImageMagick
+      progressiveTests: ['test/test-progressive.js']
     }
   });
 
