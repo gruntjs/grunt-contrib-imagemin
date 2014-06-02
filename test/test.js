@@ -46,7 +46,7 @@ exports.imagemin = {
 
         var actual = fs.statSync('tmp/test.gif').size;
         var original = fs.statSync('test/fixtures/test.gif').size;
-        test.ok(actual < original, 'should minify GIF images');
+        test.ok(actual <= original, 'should minify GIF images');
 
         test.done();
     },
@@ -55,7 +55,7 @@ exports.imagemin = {
 
         var actual = fs.statSync('tmp/test-uppercase.GIF').size;
         var original = fs.statSync('test/fixtures/test-uppercase.GIF').size;
-        test.ok(actual < original, 'should minify uppercase extension GIF images');
+        test.ok(actual <= original, 'should minify uppercase extension GIF images');
 
         test.done();
     },
