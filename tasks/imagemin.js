@@ -42,7 +42,8 @@ module.exports = function (grunt) {
             
             imagemin.optimize(function (err, data) {
                 if (err) {
-                    grunt.warn(err);
+                    grunt.warn(err + ' in file ' + file.src[0]);
+                    return next();
                 }
 
                 var diffSize = origSize - data.contents.length;
