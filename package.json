@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "async": "^0.7.0",
-    "chalk": "^0.4.0",
+    "chalk": "^0.5.0",
     "imagemin": "^0.4.5",
     "pretty-bytes": "^0.1.0"
   },
