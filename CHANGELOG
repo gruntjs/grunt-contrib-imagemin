@@ -1,3 +1,7 @@
+v0.7.2:
+  date: 2014-08-11
+  changes:
+   - Fix npm EPEERINVALID
 v0.7.1:
   date: 2014-05-31
   changes:
