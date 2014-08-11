@@ -1,11 +1,11 @@
-# grunt-contrib-imagemin v0.7.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-imagemin v0.7.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Minify images
 
 
 
 ## Getting Started
-This plugin requires Grunt `^0.4.0`
+This plugin requires Grunt `~0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -122,6 +122,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2014-08-11   v0.7.2   Fix npm EPEERINVALID
  * 2014-05-31   v0.7.1   Caching original image size before optimization. Remove unused dependencies.
  * 2014-04-29   v0.7.0   Update "imagemin" to 0.4
  * 2014-04-01   v0.6.1   Fix problem with corrupt images being created
@@ -143,4 +144,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Sat May 31 2014 16:32:27.*
+*This file was generated on Mon Aug 11 2014 14:44:00.*
