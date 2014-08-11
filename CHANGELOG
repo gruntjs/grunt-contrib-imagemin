@@ -1,3 +1,9 @@
+v0.8.0:
+  date: 2014-08-11
+  changes:
+   - Better output.
+   - Chalk 0.5.0 update.
+   - Fixes imagemin options.
 v0.7.2:
   date: 2014-08-11
   changes:
