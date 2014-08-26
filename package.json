@@ -20,18 +20,18 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "async": "^0.7.0",
-    "chalk": "^0.5.0",
-    "imagemin": "^0.4.7",
-    "pretty-bytes": "^0.1.0"
+    "async": "^0.9.0",
+    "chalk": "^0.5.1",
+    "imagemin": "^1.0.4",
+    "pretty-bytes": "^1.0.1"
   },
   "devDependencies": {
-    "grunt": "^0.4.0",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-internal": "^0.4.6",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-internal": "^0.4.10",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-nodeunit": "^0.3.3",
-    "time-grunt": "^0.3.1"
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "time-grunt": "^1.0.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
