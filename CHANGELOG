@@ -1,3 +1,7 @@
+v0.8.1:
+  date: 2014-08-27
+  changes:
+    - Bump dependencies.
 v0.8.0:
   date: 2014-08-11
   changes:
