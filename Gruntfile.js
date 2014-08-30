@@ -48,6 +48,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-internal');
 
   grunt.registerTask('test', [
+    'jshint',
     'clean',
     'imagemin',
     'nodeunit',
