@@ -39,6 +39,14 @@ Default: `true`
 Interlace gif for progressive rendering.
 
 
+##### svgoPlugins *(svg)*
+
+Type: `array`  
+Default: `[]`
+
+Customize which SVGO plugins to use. [More here](https://github.com/sindresorhus/grunt-svgmin#available-optionsplugins).
+
+
 ## use
 
 Type: `Array`  
