@@ -90,6 +90,7 @@ You can either map your files statically or [dynamically](http://gruntjs.com/con
 
 ```js
 var mozjpeg = require('imagemin-mozjpeg');
+var svgo = require('imagemin-svgo');
 
 grunt.initConfig({
   imagemin: {                          // Task
@@ -105,10 +106,17 @@ grunt.initConfig({
       }
     },
     dynamic: {                         // Another target
+      options : {
+			  use: [svgo()],
+
+			  plugins:{
+				  removeXMLProcInst: false      //Options for SVGO Plugins
+			 }
+		},
       files: [{
         expand: true,                  // Enable dynamic expansion
         cwd: 'src/',                   // Src matches are relative to this path
-        src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+        src: ['**/*.{png,jpg,gif,svg}'],   // Actual patterns to match
         dest: 'dist/'                  // Destination path prefix
       }]
     }
