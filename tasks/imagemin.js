@@ -1,6 +1,7 @@
 'use strict';
 var fs = require('fs');
 var os = require('os');
+var path = require('path');
 var async = require('async');
 var chalk = require('chalk');
 var prettyBytes = require('pretty-bytes');
@@ -15,7 +16,7 @@ var Imagemin = require('imagemin');
  */
 
 module.exports = function (grunt) {
-    grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG and GIF images', function () {
+    grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG, GIF and SVG images', function () {
         var done = this.async();
         var files = this.files;
         var totalSaved = 0;
@@ -29,43 +30,59 @@ module.exports = function (grunt) {
             var msg;
             var imagemin = new Imagemin()
                 .src(file.src[0])
-                .dest(file.dest)
+                .dest(path.dirname(file.dest))
                 .use(Imagemin.jpegtran(options))
                 .use(Imagemin.gifsicle(options))
-                .use(Imagemin.optipng(options));
+                .use(Imagemin.pngquant(options))
+                .use(Imagemin.optipng(options))
+                .use(Imagemin.svgo({ plugins: options.svgoPlugins || [] }));
 
             if (options.use) {
-                options.use.forEach(imagemin.use.bind(imagemin));
+                options.use.forEach(function (Stream) {
+                    imagemin.use(new Stream());
+                });
             }
 
-            var origSize = fs.statSync(file.src[0]).size;
-
-            imagemin.optimize(function (err, data) {
+            fs.stat(file.src[0], function (err, stats) {
                 if (err) {
                     grunt.warn(err + ' in file ' + file.src[0]);
                     return next();
                 }
 
-                var diffSize = origSize - data.contents.length;
-                totalSaved += diffSize;
+                imagemin.run(function (err, data) {
+                    if (err) {
+                        grunt.warn(err + ' in file ' + file.src[0]);
+                        return next();
+                    }
 
-                if (diffSize < 10) {
-                    msg = 'already optimized';
-                } else {
-                    msg = 'saved ' + prettyBytes(diffSize) + ' - ' + (diffSize / origSize * 100).toFixed() + '%';
-                }
+                    var origSize = stats.size;
+                    var diffSize = origSize - data[0].contents.length;
 
-                grunt.verbose.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
-                process.nextTick(next);
+                    totalSaved += diffSize;
+
+                    if (diffSize < 10) {
+                        msg = 'already optimized';
+                    } else {
+                        msg = [
+                            'saved ' + prettyBytes(diffSize) + ' -',
+                            (diffSize / origSize * 100).toFixed() + '%'
+                        ].join(' ');
+                    }
+
+                    grunt.verbose.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
+                    process.nextTick(next);
+                });
             });
         }, function (err) {
             if (err) {
                 grunt.warn(err);
             }
 
-            var msg  = 'Minified ' + files.length + ' ';
-                msg += files.length === 1 ? 'image' : 'images';
-                msg += chalk.gray(' (saved ' + prettyBytes(totalSaved) + ')');
+            var msg = [
+                'Minified ' + files.length,
+                files.length === 1 ? 'image' : 'images',
+                chalk.gray('(saved ' + prettyBytes(totalSaved) + ')')
+            ].join(' ');
 
             grunt.log.writeln(msg);
             done();

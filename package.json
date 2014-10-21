@@ -22,7 +22,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "chalk": "^0.5.1",
-    "imagemin": "^1.0.4",
+    "imagemin": "^2.0.0",
     "pretty-bytes": "^1.0.1"
   },
   "devDependencies": {
@@ -45,7 +45,8 @@
     "jpeg",
     "jpg",
     "minify",
-    "png"
+    "png",
+    "svg"
   ],
   "files": [
     "tasks",
