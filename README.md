@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.8.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-imagemin v0.9.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Minify images
 
@@ -32,6 +32,7 @@ Comes bundled with the following optimizers:
 - [gifsicle](https://github.com/kevva/imagemin-gifsicle) — *Compress GIF images*
 - [jpegtran](https://github.com/kevva/imagemin-jpegtran) — *Compress JPEG images*
 - [optipng](https://github.com/kevva/imagemin-optipng) — *Compress PNG images*
+- [pngquant](https://github.com/kevva/imagemin-pngquant) — *Compress PNG images*
 - [svgo](https://github.com/kevva/imagemin-svgo) — *Compress SVG images*
 
 We recommend using [grunt-newer](https://github.com/tschaub/grunt-newer) to only process changed files as minifying images can be quite slow.
@@ -77,6 +78,14 @@ Default: `true`
 Interlace gif for progressive rendering.
 
 
+####### svgoPlugins *(svg)*
+
+Type: `array`  
+Default: `[]`
+
+Customize which SVGO plugins to use. [More here](https://github.com/sindresorhus/grunt-svgmin#available-optionsplugins).
+
+
 #### use
 
 Type: `Array`  
@@ -89,13 +98,14 @@ Additional [plugins](https://npmjs.org/keyword/imageminplugin) to use with image
 You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).
 
 ```js
-var mozjpeg = require('imagemin-mozjpeg');
+var mozjpeg = require('imagemin-mozjpeg').ctor;
 
 grunt.initConfig({
   imagemin: {                          // Task
     static: {                          // Target
       options: {                       // Target options
         optimizationLevel: 3,
+        svgoPlugins: [{ removeViewBox: false }],
         use: [mozjpeg()]
       },
       files: {                         // Dictionary of files
@@ -122,6 +132,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2014-10-22   v0.9.0   Update to imagemin 2.0.
  * 2014-08-27   v0.8.1   Bump dependencies.
  * 2014-08-11   v0.8.0   Better output. Chalk 0.5.0 update. Fixes imagemin options.
  * 2014-08-11   v0.7.2   Fix npm EPEERINVALID
@@ -146,4 +157,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Wed Aug 27 2014 14:44:52.*
+*This file was generated on Wed Oct 22 2014 14:25:49.*
