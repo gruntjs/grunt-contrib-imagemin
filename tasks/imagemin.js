@@ -38,9 +38,7 @@ module.exports = function (grunt) {
                 .use(Imagemin.svgo({ plugins: options.svgoPlugins || [] }));
 
             if (options.use) {
-                options.use.forEach(function (Stream) {
-                    imagemin.use(new Stream());
-                });
+                options.use.forEach(imagemin.use.bind(imagemin));
             }
 
             fs.stat(file.src[0], function (err, stats) {

@@ -3,7 +3,7 @@
 You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).
 
 ```js
-var mozjpeg = require('imagemin-mozjpeg').ctor;
+var mozjpeg = require('imagemin-mozjpeg');
 
 grunt.initConfig({
   imagemin: {                          // Task
