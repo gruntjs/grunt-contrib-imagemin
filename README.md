@@ -98,7 +98,7 @@ Additional [plugins](https://npmjs.org/keyword/imageminplugin) to use with image
 You can either map your files statically or [dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically).
 
 ```js
-var mozjpeg = require('imagemin-mozjpeg').ctor;
+var mozjpeg = require('imagemin-mozjpeg');
 
 grunt.initConfig({
   imagemin: {                          // Task
@@ -132,6 +132,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2014-10-25   v0.9.1   Update plugin API.
  * 2014-10-22   v0.9.0   Update to imagemin 2.0.
  * 2014-08-27   v0.8.1   Bump dependencies.
  * 2014-08-11   v0.8.0   Better output. Chalk 0.5.0 update. Fixes imagemin options.
@@ -157,4 +158,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Wed Oct 22 2014 14:25:49.*
+*This file was generated on Sat Oct 25 2014 03:34:40.*
