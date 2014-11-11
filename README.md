@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.9.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-imagemin v0.9.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
 
 > Minify images
 
@@ -132,6 +132,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2014-11-11   v0.9.2   Bump imagemin dependency
  * 2014-10-25   v0.9.1   Update plugin API.
  * 2014-10-22   v0.9.0   Update to imagemin 2.0.
  * 2014-08-27   v0.8.1   Bump dependencies.
@@ -158,4 +159,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Sat Oct 25 2014 03:34:40.*
+*This file was generated on Tue Nov 11 2014 16:27:08.*

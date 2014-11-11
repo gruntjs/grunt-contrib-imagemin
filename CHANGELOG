@@ -1,3 +1,7 @@
+v0.9.2:
+  date: 2014-11-11
+  changes:
+    - Bump imagemin dependency
 v0.9.1:
   date: 2014-10-25
   changes:
