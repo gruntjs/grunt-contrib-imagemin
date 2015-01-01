@@ -11,7 +11,7 @@ var Imagemin = require('imagemin');
  * grunt-contrib-imagemin
  * http://gruntjs.com/
  *
- * Copyright (c) 2014 Sindre Sorhus, contributors
+ * Copyright (c) 2015 Sindre Sorhus, contributors
  * Licensed under the MIT license.
  */
 
