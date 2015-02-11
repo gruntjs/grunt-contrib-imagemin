@@ -1,11 +1,11 @@
-# grunt-contrib-imagemin v0.9.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.png?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) <a href="https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin"><img src="https://ci.appveyor.com/api/projects/status/s1cpt9m3e5ihuoqj/branch/master" alt="Build Status: Windows" height="18" /></a>
+# grunt-contrib-imagemin v0.9.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify images
 
 
 
 ## Getting Started
-This plugin requires Grunt `~0.4.0`
+This plugin requires Grunt `>=0.4.0`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -32,7 +32,6 @@ Comes bundled with the following optimizers:
 - [gifsicle](https://github.com/kevva/imagemin-gifsicle) — *Compress GIF images*
 - [jpegtran](https://github.com/kevva/imagemin-jpegtran) — *Compress JPEG images*
 - [optipng](https://github.com/kevva/imagemin-optipng) — *Compress PNG images*
-- [pngquant](https://github.com/kevva/imagemin-pngquant) — *Compress PNG images*
 - [svgo](https://github.com/kevva/imagemin-svgo) — *Compress SVG images*
 
 We recommend using [grunt-newer](https://github.com/tschaub/grunt-newer) to only process changed files as minifying images can be quite slow.
@@ -159,4 +158,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Tue Nov 11 2014 16:27:08.*
+*This file was generated on Wed Feb 11 2015 17:39:56.*

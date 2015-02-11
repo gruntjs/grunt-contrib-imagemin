@@ -33,7 +33,6 @@ module.exports = function (grunt) {
                 .dest(path.dirname(file.dest))
                 .use(Imagemin.jpegtran(options))
                 .use(Imagemin.gifsicle(options))
-                .use(Imagemin.pngquant(options))
                 .use(Imagemin.optipng(options))
                 .use(Imagemin.svgo({ plugins: options.svgoPlugins || [] }));
 
