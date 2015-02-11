@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v0.9.2 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
+# grunt-contrib-imagemin v0.9.3 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin)
 
 > Minify images
 
@@ -131,6 +131,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2015-02-11   v0.9.3   Remove pngquant
  * 2014-11-11   v0.9.2   Bump imagemin dependency
  * 2014-10-25   v0.9.1   Update plugin API.
  * 2014-10-22   v0.9.0   Update to imagemin 2.0.
@@ -158,4 +159,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Wed Feb 11 2015 17:39:56.*
+*This file was generated on Wed Feb 11 2015 17:41:30.*
