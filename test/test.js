@@ -1,8 +1,6 @@
 'use strict';
+
 var fs = require('fs');
-var grunt = require('grunt');
-var os = require('os');
-var path = require('path');
 
 exports.imagemin = {
     minifyPng: function (test) {
