@@ -22,7 +22,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "chalk": "^1.0.0",
-    "imagemin": "^3.0.0",
+    "imagemin": "^3.1.0",
     "pretty-bytes": "^1.0.1"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "grunt-contrib-internal": "^0.4.10",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-nodeunit": "^0.4.1",
-    "time-grunt": "^1.0.0"
+    "time-grunt": "^1.1.0"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
