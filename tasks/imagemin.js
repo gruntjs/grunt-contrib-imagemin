@@ -27,7 +27,7 @@ module.exports = function (grunt) {
             progressive: true
         });
 
-        async.forEachLimit(files, os.cpus().length, function (file, next) {
+        async.eachLimit(files, os.cpus().length, function (file, next) {
             var msg;
             var imagemin = new Imagemin()
                 .src(file.src[0])
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
                 .use(Imagemin.jpegtran(options))
                 .use(Imagemin.gifsicle(options))
                 .use(Imagemin.optipng(options))
-                .use(Imagemin.svgo({ plugins: options.svgoPlugins || [] }));
+                .use(Imagemin.svgo({plugins: options.svgoPlugins || []}));
 
             if (options.use) {
                 options.use.forEach(imagemin.use.bind(imagemin));
