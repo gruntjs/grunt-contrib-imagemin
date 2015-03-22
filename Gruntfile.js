@@ -33,6 +33,11 @@ module.exports = function (grunt) {
           src: '**/*.{gif,GIF,jpg,JPG,png,PNG}',
           dest: 'tmp'
         }]
+      },
+      rename: {
+        files: {
+          'tmp/rename.jpg': 'test/fixtures/test.jpg'
+        }
       }
     },
     nodeunit: {

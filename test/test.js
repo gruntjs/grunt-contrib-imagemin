@@ -63,5 +63,12 @@ exports.imagemin = {
         test.ok(fs.existsSync('tmp/nested/nested/test.png'), 'should support nested dest dir');
 
         test.done();
+    },
+    rename: function (test) {
+        test.expect(1);
+
+        test.ok(fs.existsSync('tmp/rename.jpg'), 'should support renaming');
+
+        test.done();
     }
 };

@@ -6,6 +6,7 @@ var async = require('async');
 var chalk = require('chalk');
 var prettyBytes = require('pretty-bytes');
 var Imagemin = require('imagemin');
+var rename = require('gulp-rename');
 
 /*
  * grunt-contrib-imagemin
@@ -38,6 +39,10 @@ module.exports = function (grunt) {
 
             if (options.use) {
                 options.use.forEach(imagemin.use.bind(imagemin));
+            }
+
+            if (path.basename(file.src[0]) !== path.basename(file.dest)) {
+                imagemin.use(rename(path.basename(file.dest)));
             }
 
             fs.stat(file.src[0], function (err, stats) {
