@@ -1,3 +1,7 @@
+v0.9.4:
+  date: 2015-03-22
+  changes:
+    - Add support for renaming files
 v0.9.3:
   date: 2015-02-11
   changes:
