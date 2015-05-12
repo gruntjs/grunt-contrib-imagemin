@@ -24,7 +24,6 @@ install:
         npm -g install npm@2
         $env:PATH="$env:APPDATA\npm;$env:PATH"
       }
-  - npm install -g grunt-cli
   - npm install
 
 build: off
