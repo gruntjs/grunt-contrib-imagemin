@@ -25,14 +25,14 @@ grunt.loadNpmTasks('grunt-contrib-imagemin');
 ## Imagemin task
 _Run this task with the `grunt imagemin` command._
 
-Minify images using [imagemin](https://github.com/kevva/imagemin).
+Minify images using [imagemin](https://github.com/imagemin/imagemin).
 
 Comes bundled with the following optimizers:
 
-- [gifsicle](https://github.com/kevva/imagemin-gifsicle) — *Compress GIF images*
-- [jpegtran](https://github.com/kevva/imagemin-jpegtran) — *Compress JPEG images*
-- [optipng](https://github.com/kevva/imagemin-optipng) — *Compress PNG images*
-- [svgo](https://github.com/kevva/imagemin-svgo) — *Compress SVG images*
+- [gifsicle](https://github.com/imagemin/imagemin-gifsicle) — *Compress GIF images*
+- [jpegtran](https://github.com/imagemin/imagemin-jpegtran) — *Compress JPEG images*
+- [optipng](https://github.com/imagemin/imagemin-optipng) — *Compress PNG images*
+- [svgo](https://github.com/imagemin/imagemin-svgo) — *Compress SVG images*
 
 We recommend using [grunt-newer](https://github.com/tschaub/grunt-newer) to only process changed files as minifying images can be quite slow.
 
@@ -90,7 +90,7 @@ Customize which SVGO plugins to use. [More here](https://github.com/sindresorhus
 Type: `Array`  
 Default: `null`
 
-Additional [plugins](https://npmjs.org/keyword/imageminplugin) to use with imagemin.
+Additional [plugins](https://www.npmjs.com/browse/keyword/imageminplugin) to use with imagemin.
 
 #### Example config
 
@@ -160,4 +160,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Sun Mar 22 2015 17:39:19.*
+*This file was generated on Fri Jul 03 2015 02:30:18.*
