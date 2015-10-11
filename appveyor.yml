@@ -1,16 +1,10 @@
 # AppVeyor file
 # http://www.appveyor.com/docs/appveyor-yml
 
-# Build version format
 version: "{build}"
 
 clone_depth: 10
 
-# Fix line endings on Windows
-init:
-  - git config --global core.autocrlf true
-
-# What combinations to test
 environment:
   matrix:
     - nodejs_version: "4"
@@ -37,5 +31,4 @@ matrix:
 
 cache:
   - '%APPDATA%\npm\node_modules -> package.json'    # global npm modules
-  - '%APPDATA%\npm-cache -> package.json'           # npm cache
   - 'node_modules -> package.json'                  # local npm modules
