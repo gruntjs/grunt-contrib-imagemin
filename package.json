@@ -15,20 +15,20 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "async": "^0.9.0",
-    "chalk": "^1.0.0",
-    "gulp-rename": "^1.2.0",
-    "imagemin": "^4.0.0",
-    "pretty-bytes": "^1.0.1"
+    "async": "~1.5.0",
+    "chalk": "~1.1.1",
+    "gulp-rename": "~1.2.2",
+    "imagemin": "~4.0.0",
+    "pretty-bytes": "~2.0.1"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-internal": "^0.4.10",
-    "grunt-contrib-jshint": "^0.11.0",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "time-grunt": "^1.1.0"
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-internal": "~0.4.13",
+    "grunt-contrib-jshint": "~0.11.3",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "time-grunt": "~1.2.2"
   },
   "peerDependencies": {
     "grunt": ">=0.4.0"
