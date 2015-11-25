@@ -77,7 +77,7 @@ Default: `true`
 Interlace gif for progressive rendering.
 
 
-####### svgoPlugins *(svg)*
+#### svgoPlugins *(svg)*
 
 Type: `array`  
 Default: `[]`
