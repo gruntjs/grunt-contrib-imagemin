@@ -5,15 +5,15 @@ v1.0.0:
 v0.9.4:
   date: 2015-03-22
   changes:
-    - Add support for renaming files
+    - Add support for renaming files.
 v0.9.3:
   date: 2015-02-11
   changes:
-    - Remove pngquant
+    - Remove pngquant.
 v0.9.2:
   date: 2014-11-11
   changes:
-    - Bump imagemin dependency
+    - Bump imagemin dependency.
 v0.9.1:
   date: 2014-10-25
   changes:
@@ -30,12 +30,12 @@ v0.8.0:
   date: 2014-08-11
   changes:
    - Better output.
-   - Chalk 0.5.0 update.
+   - Update to chalk 0.5.0.
    - Fixes imagemin options.
 v0.7.2:
   date: 2014-08-11
   changes:
-   - Fix npm EPEERINVALID
+   - Fix npm `EPEERINVALID`.
 v0.7.1:
   date: 2014-05-31
   changes:
@@ -52,9 +52,9 @@ v0.6.1:
 v0.6.0:
   date: 2014-03-28
   changes:
-    - Updated "imagemin" to 0.2
-    - Added percentage to size saved view - fixes #167.
-    - cache option removed.
+    - Updated "imagemin" to 0.2.
+    - 'Added percentage to size saved view - fixes #167.'
+    - '`cache` option removed.'
     - Adds "pretty-bytes".
 v0.5.0:
   date: 2014-01-13
@@ -72,7 +72,7 @@ v0.4.0:
 v0.3.0:
   date: 2013-09-09
   changes:
-   - Add `interlace` option for gif files.
+   - Add `interlace` option for GIF files.
 v0.2.0:
   date: 2013-08-16
   changes:
@@ -101,12 +101,12 @@ v0.1.1:
 v0.1.1rc8:
   date: 2013-01-30
   changes:
-    - Fix task not creating destination folders
+    - Fix task not creating destination folders.
 v0.1.1rc7:
   date: 2013-01-30
   changes:
     - Updating to work with grunt v0.4.0rc7.
-    - Switching to this.files api.
+    - Switching to `this.files` API.
 v0.1.0:
   date: 2012-11-01
   changes:
