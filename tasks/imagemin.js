@@ -58,7 +58,7 @@ module.exports = function (grunt) {
                     }
 
                     var origSize = stats.size;
-                    var diffSize = origSize - ( ( data[0].contents && data[0].contents.length ) || 0 );
+                    var diffSize = origSize - ((data[0].contents && data[0].contents.length) || 0);
 
                     totalSaved += diffSize;
 
