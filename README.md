@@ -1,4 +1,4 @@
-# grunt-contrib-imagemin v1.0.0 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/7w491e6edsuanreu/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin/branch/master)
+# grunt-contrib-imagemin v1.0.1 [![Build Status: Linux](https://travis-ci.org/gruntjs/grunt-contrib-imagemin.svg?branch=master)](https://travis-ci.org/gruntjs/grunt-contrib-imagemin) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/7w491e6edsuanreu/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/grunt-contrib-imagemin/branch/master)
 
 > Minify images
 
@@ -130,6 +130,7 @@ grunt.registerTask('default', ['imagemin']);
 
 ## Release History
 
+ * 2016-05-23   v1.0.1   Check for `data.contents` existence.
  * 2015-11-09   v1.0.0   Update to imagemin ^4.0.
  * 2015-03-22   v0.9.4   Add support for renaming files.
  * 2015-02-11   v0.9.3   Remove pngquant.
@@ -160,4 +161,4 @@ grunt.registerTask('default', ['imagemin']);
 
 Task submitted by [Sindre Sorhus](http://github.com/sindresorhus)
 
-*This file was generated on Fri Mar 18 2016 21:10:43.*
+*This file was generated on Mon May 23 2016 17:23:51.*
