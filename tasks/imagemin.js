@@ -57,6 +57,10 @@ module.exports = function (grunt) {
                         return next();
                     }
 
+                    if (Array.isArray(data) === false || data.length === 0) {
+                      return next();
+                    }
+
                     var origSize = stats.size;
                     var diffSize = origSize - ((data[0].contents && data[0].contents.length) || 0);
 
