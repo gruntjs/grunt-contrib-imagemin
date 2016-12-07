@@ -118,6 +118,11 @@ grunt.initConfig({
         cwd: 'src/',                   // Src matches are relative to this path
         src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
         dest: 'dist/'                  // Destination path prefix
+        rename: function(dest, src) {  // Optionally rename processed files
+                var output = src.replace(etc...);
+                manifest_arr.push(output);
+                return output;
+            }
       }]
     }
   }
