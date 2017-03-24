@@ -12,6 +12,8 @@ If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out th
 npm install grunt-contrib-imagemin --save-dev
 ```
 
+**Note:** pngquant (included since v0.2.0) requires [X11](http://xquartz.macosforge.org/landing/) on OSX.
+
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
