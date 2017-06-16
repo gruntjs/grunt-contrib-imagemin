@@ -1,35 +1,22 @@
 {
   "name": "grunt-contrib-imagemin",
-  "description": "Minify images",
   "version": "1.0.1",
+  "description": "Minify images",
+  "license": "MIT",
+  "repository": "gruntjs/grunt-contrib-imagemin",
   "author": {
     "name": "Grunt Team",
     "url": "http://gruntjs.com/"
   },
-  "repository": "gruntjs/grunt-contrib-imagemin",
-  "license": "MIT",
   "engines": {
     "node": ">=0.10.0"
   },
-  "main": "tasks/imagemin.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "xo && grunt && ava && del tmp"
   },
-  "dependencies": {
-    "async": "^1.5.2",
-    "chalk": "^1.0.0",
-    "gulp-rename": "^1.2.0",
-    "imagemin": "^4.0.0",
-    "pretty-bytes": "^3.0.1"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.0",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-internal": "^1.1.0",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-nodeunit": "^1.0.0",
-    "time-grunt": "^1.1.0"
-  },
+  "files": [
+    "tasks"
+  ],
   "keywords": [
     "gruntplugin",
     "compress",
@@ -42,8 +29,19 @@
     "png",
     "svg"
   ],
-  "files": [
-    "tasks"
-  ],
+  "dependencies": {
+    "async": "^1.5.2",
+    "chalk": "^1.0.0",
+    "gulp-rename": "^1.2.0",
+    "imagemin": "^4.0.0",
+    "pretty-bytes": "^3.0.1"
+  },
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "del-cli": "^0.2.1",
+    "grunt": "^1.0.0",
+    "grunt-cli": "^1.2.0",
+    "xo": "^0.16.0"
+  },
   "appveyor_id": "7w491e6edsuanreu"
 }
