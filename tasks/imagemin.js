@@ -1,82 +1,83 @@
 'use strict';
-var fs = require('fs');
-var os = require('os');
-var path = require('path');
-var async = require('async');
-var chalk = require('chalk');
-var prettyBytes = require('pretty-bytes');
-var Imagemin = require('imagemin');
-var rename = require('gulp-rename');
+const os = require('os');
+const chalk = require('chalk');
+const imagemin = require('imagemin');
+const plur = require('plur');
+const prettyBytes = require('pretty-bytes');
+const pMap = require('p-map');
 
-module.exports = function (grunt) {
+const defaultPlugins = ['gifsicle', 'jpegtran', 'optipng', 'svgo'];
+
+const loadPlugin = (grunt, plugin, opts) => {
+	try {
+		return require(`imagemin-${plugin}`).apply(null, opts);
+	} catch (err) {
+		grunt.warn(`Couldn't load default plugin "${plugin}"`);
+	}
+};
+
+const getDefaultPlugins = (grunt, opts) => defaultPlugins.reduce((plugins, plugin) => {
+	const instance = loadPlugin(grunt, plugin, opts);
+
+	if (!instance) {
+		return plugins;
+	}
+
+	return plugins.concat(instance);
+}, []);
+
+module.exports = grunt => {
 	grunt.registerMultiTask('imagemin', 'Minify PNG, JPEG, GIF and SVG images', function () {
-		var done = this.async();
-		var files = this.files;
-		var totalSaved = 0;
-		var options = this.options({
+		const done = this.async();
+		const options = this.options({
 			interlaced: true,
 			optimizationLevel: 3,
 			progressive: true
 		});
 
-		async.eachLimit(files, os.cpus().length, function (file, next) {
-			var msg;
-			var imagemin = new Imagemin()
-				.src(file.src[0])
-				.dest(path.dirname(file.dest))
-				.use(Imagemin.jpegtran(options))
-				.use(Imagemin.gifsicle(options))
-				.use(Imagemin.optipng(options))
-				.use(Imagemin.svgo({plugins: options.svgoPlugins || []}));
+		if (Array.isArray(options.svgoPlugins)) {
+			options.plugins = options.svgoPlugins;
+		}
 
-			if (options.use) {
-				options.use.forEach(imagemin.use.bind(imagemin));
-			}
+		const plugins = options.use || getDefaultPlugins(grunt, options);
 
-			if (path.basename(file.src[0]) !== path.basename(file.dest)) {
-				imagemin.use(rename(path.basename(file.dest)));
-			}
+		let totalBytes = 0;
+		let totalSavedBytes = 0;
+		let totalFiles = 0;
 
-			fs.stat(file.src[0], function (err, stats) {
-				if (err) {
-					grunt.warn(err + ' in file ' + file.src[0]);
-					return next();
+		pMap(this.files, file => Promise.resolve(grunt.file.read(file.src[0], {encoding: null}))
+			.then(buf => Promise.all([imagemin.buffer(buf, {plugins}), buf]))
+			.then(res => {
+				const optimizedBuf = res[0];
+				const originalBuf = res[1];
+				const originalSize = originalBuf.length;
+				const optimizedSize = optimizedBuf.length;
+				const saved = originalSize - optimizedSize;
+				const percent = originalSize > 0 ? (saved / originalSize) * 100 : 0;
+				const savedMsg = `saved ${prettyBytes(saved)} - ${percent.toFixed(1).replace(/\.0$/, '')}%`;
+				const msg = saved > 0 ? savedMsg : 'already optimized';
+
+				if (saved > 0) {
+					totalBytes += originalSize;
+					totalSavedBytes += saved;
+					totalFiles++;
 				}
 
-				imagemin.run(function (err, data) {
-					if (err) {
-						grunt.warn(err + ' in file ' + file.src[0]);
-						return next();
-					}
-
-					var origSize = stats.size;
-					var diffSize = origSize - ((data[0].contents && data[0].contents.length) || 0);
-
-					totalSaved += diffSize;
-
-					if (diffSize < 10) {
-						msg = 'already optimized';
-					} else {
-						msg = [
-							'saved ' + prettyBytes(diffSize) + ' -',
-							(diffSize / origSize * 100).toFixed() + '%'
-						].join(' ');
-					}
-
-					grunt.verbose.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(' (' + msg + ')'));
-					process.nextTick(next);
-				});
-			});
-		}, function (err) {
-			if (err) {
-				grunt.warn(err);
+				grunt.file.write(file.dest, optimizedBuf);
+				grunt.verbose.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(` (${msg})`));
+			})
+			.catch(err => {
+				grunt.warn(`${err} in file ${file.src[0]}`);
+			}), {
+				concurrency: os.cpus().length
 			}
+		).then(() => {
+			const percent = totalBytes > 0 ? (totalSavedBytes / totalBytes) * 100 : 0;
+			let msg = `Minified ${totalFiles} ${plur('image', totalFiles)}`;
 
-			var msg = [
-				'Minified ' + files.length,
-				files.length === 1 ? 'image' : 'images',
-				chalk.gray('(saved ' + prettyBytes(totalSaved) + ')')
-			].join(' ');
+			if (totalFiles > 0) {
+				msg += chalk.gray(` (saved ${prettyBytes(totalSavedBytes)} - ${percent.toFixed(1).replace(/\.0$/, '')}%)`);
+			}
 
 			grunt.log.writeln(msg);
 			done();

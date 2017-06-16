@@ -9,7 +9,7 @@
     "url": "http://gruntjs.com/"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
     "test": "xo && grunt && ava && del-cli tmp"
@@ -30,18 +30,24 @@
     "svg"
   ],
   "dependencies": {
-    "async": "^1.5.2",
     "chalk": "^1.0.0",
-    "gulp-rename": "^1.2.0",
-    "imagemin": "^4.0.0",
-    "pretty-bytes": "^3.0.1"
+    "imagemin": "^5.3.1",
+    "p-map": "^1.1.1",
+    "plur": "^2.1.2",
+    "pretty-bytes": "^4.0.2"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
-    "del-cli": "^0.2.1",
+    "ava": "*",
+    "del-cli": "^1.0.0",
     "grunt": "^1.0.0",
     "grunt-cli": "^1.2.0",
-    "xo": "^0.16.0"
+    "xo": "*"
+  },
+  "optionalDependencies": {
+    "imagemin-gifsicle": "^5.0.0",
+    "imagemin-jpegtran": "^5.0.0",
+    "imagemin-optipng": "^5.1.0",
+    "imagemin-svgo": "^5.1.0"
   },
   "appveyor_id": "7w491e6edsuanreu"
 }
