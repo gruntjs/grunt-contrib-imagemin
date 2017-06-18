@@ -21,7 +21,7 @@ grunt.initConfig({
             options: {
                 optimizationLevel: 3,
                 svgoPlugins: [{removeViewBox: false}],
-                use: [mozjpeg()]
+                use: [mozjpeg()] // Example plugin usage
             },
             files: {
                 'dist/img.png': 'src/img.png',
