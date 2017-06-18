@@ -45,7 +45,7 @@ module.exports = grunt => {
 		let totalSavedBytes = 0;
 		let totalFiles = 0;
 
-		pMap(this.files, file => Promise.resolve(grunt.file.read(file.src[0], {encoding: null}))
+		const processFile = file => Promise.resolve(grunt.file.read(file.src[0], {encoding: null}))
 			.then(buf => Promise.all([imagemin.buffer(buf, {plugins}), buf]))
 			.then(res => {
 				const optimizedBuf = res[0];
@@ -68,10 +68,9 @@ module.exports = grunt => {
 			})
 			.catch(err => {
 				grunt.warn(`${err} in file ${file.src[0]}`);
-			}), {
-				concurrency: os.cpus().length
-			}
-		).then(() => {
+			});
+
+		pMap(this.files, processFile, {concurrency: os.cpus().length}).then(() => {
 			const percent = totalBytes > 0 ? (totalSavedBytes / totalBytes) * 100 : 0;
 			let msg = `Minified ${totalFiles} ${plur('image', totalFiles)}`;
 
