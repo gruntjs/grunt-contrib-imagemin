@@ -48,6 +48,7 @@ module.exports = grunt => {
 		const processFile = file => Promise.resolve(grunt.file.read(file.src[0], {encoding: null}))
 			.then(buf => Promise.all([imagemin.buffer(buf, {plugins}), buf]))
 			.then(res => {
+				// TODO: Use destructuring when targeting Node.js 6
 				const optimizedBuf = res[0];
 				const originalBuf = res[1];
 				const originalSize = originalBuf.length;
