@@ -10,7 +10,7 @@ const defaultPlugins = ['gifsicle', 'jpegtran', 'optipng', 'svgo'];
 
 const loadPlugin = (grunt, plugin, opts) => {
 	try {
-		return require(`imagemin-${plugin}`).apply(null, opts);
+		return require(`imagemin-${plugin}`)(opts);
 	} catch (err) {
 		grunt.warn(`Couldn't load default plugin "${plugin}"`);
 	}
