@@ -32,7 +32,8 @@ module.exports = grunt => {
 		const options = this.options({
 			interlaced: true,
 			optimizationLevel: 3,
-			progressive: true
+			progressive: true,
+			concurrency: os.cpus().length
 		});
 
 		if (Array.isArray(options.svgoPlugins)) {
@@ -71,7 +72,7 @@ module.exports = grunt => {
 				grunt.warn(`${err} in file ${file.src[0]}`);
 			});
 
-		pMap(this.files, processFile, {concurrency: os.cpus().length}).then(() => {
+		pMap(this.files, processFile, {concurrency: options.concurrency}).then(() => {
 			const percent = totalBytes > 0 ? (totalSavedBytes / totalBytes) * 100 : 0;
 			let msg = `Minified ${totalFiles} ${plur('image', totalFiles)}`;
 
