@@ -100,6 +100,12 @@ Default: `[imagemin.gifsicle(), imagemin.jpegtran(), imagemin.optipng(), imagemi
 
 These are bundled for convenience and most users will not need anything else.
 
+### concurrency
+
+Type: `number`<br>
+Default: `os.cpus().length`
+
+Control the maximum number of image optimizations that may be performed in parallel.
 
 ## License
 
