@@ -1,6 +1,6 @@
 {
   "name": "grunt-contrib-imagemin",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Minify images",
   "license": "MIT",
   "repository": "gruntjs/grunt-contrib-imagemin",
