@@ -9,7 +9,7 @@
     "url": "http://gruntjs.com/"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "scripts": {
     "test": "xo && grunt && ava && del-cli tmp"
