@@ -1,5 +1,15 @@
+sudo: false
+
 language: node_js
+
 node_js:
-  - '8'
-  - '6'
-  - '4'
+  - "6"
+  - "8"
+  - "10"
+
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+    - node_modules

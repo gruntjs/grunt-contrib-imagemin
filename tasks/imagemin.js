@@ -11,7 +11,7 @@ const defaultPlugins = ['gifsicle', 'jpegtran', 'optipng', 'svgo'];
 const loadPlugin = (grunt, plugin, opts) => {
 	try {
 		return require(`imagemin-${plugin}`)(opts);
-	} catch (err) {
+	} catch (error) {
 		grunt.warn(`Couldn't load default plugin "${plugin}"`);
 	}
 };
@@ -68,8 +68,8 @@ module.exports = grunt => {
 				grunt.file.write(file.dest, optimizedBuf);
 				grunt.verbose.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(` (${msg})`));
 			})
-			.catch(err => {
-				grunt.warn(`${err} in file ${file.src[0]}`);
+			.catch(error => {
+				grunt.warn(`${error} in file ${file.src[0]}`);
 			});
 
 		pMap(this.files, processFile, {concurrency: options.concurrency}).then(() => {
