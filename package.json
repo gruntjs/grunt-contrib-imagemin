@@ -6,7 +6,7 @@
   "repository": "gruntjs/grunt-contrib-imagemin",
   "author": {
     "name": "Grunt Team",
-    "url": "http://gruntjs.com/"
+    "url": "https://gruntjs.com/"
   },
   "engines": {
     "node": ">=6"
