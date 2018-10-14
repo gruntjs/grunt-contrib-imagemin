@@ -12,7 +12,9 @@
     "node": ">=6"
   },
   "scripts": {
-    "test": "xo && grunt && ava && del-cli tmp"
+    "ava": "ava",
+    "test": "npm run xo && grunt && npm run ava && del-cli tmp",
+    "xo": "xo"
   },
   "files": [
     "tasks"
