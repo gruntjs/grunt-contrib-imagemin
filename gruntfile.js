@@ -1,4 +1,3 @@
-'use strict';
 module.exports = grunt => {
 	grunt.initConfig({
 		imagemin: {
