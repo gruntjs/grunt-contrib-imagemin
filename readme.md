@@ -5,8 +5,8 @@
 
 ## Install
 
-```
-$ npm install --save-dev grunt-contrib-imagemin
+```sh
+npm install --save-dev grunt-contrib-imagemin
 ```
 
 
@@ -49,8 +49,8 @@ grunt.registerTask('default', ['imagemin']);
 
 ### optimizationLevel *(png)*
 
-Type: `number`<br>
-Default: `3`
+* Type: `number`
+* Default: `3`
 
 Select optimization level between `0` and `7`.
 
@@ -68,15 +68,15 @@ Level and trials:
 
 ### progressive *(jpg)*
 
-Type: `boolean`<br>
-Default: `true`
+* Type: `boolean`
+* Default: `true`
 
 Lossless conversion to progressive.
 
 ### interlaced *(gif)*
 
-Type: `boolean`<br>
-Default: `true`
+* Type: `boolean`
+* Default: `true`
 
 Interlace gif for progressive rendering.
 
@@ -88,8 +88,8 @@ Customize which SVGO plugins to use. [More here](https://github.com/sindresorhus
 
 ### use
 
-Type: `Array`<br>
-Default: `[imagemin.gifsicle(), imagemin.jpegtran(), imagemin.optipng(), imagemin.svgo()]`
+* Type: `Array`
+* Default: `[imagemin.gifsicle(), imagemin.jpegtran(), imagemin.optipng(), imagemin.svgo()]`
 
 [Plugins](https://www.npmjs.com/browse/keyword/imageminplugin) to use with imagemin. It comes bundled with the following **lossless** optimizers:
 
@@ -102,8 +102,8 @@ These are bundled for convenience and most users will not need anything else.
 
 ### concurrency
 
-Type: `number`<br>
-Default: `os.cpus().length`
+* Type: `number`
+* Default: `os.cpus().length`
 
 Control the maximum number of image optimizations that may be performed in parallel.
 
