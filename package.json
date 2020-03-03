@@ -39,7 +39,7 @@
     "pretty-bytes": "^5.1.0"
   },
   "devDependencies": {
-    "ava": "^3.5.0",
+    "ava": "^1.4.1",
     "del-cli": "^1.1.0",
     "grunt": "^1.0.4",
     "xo": "^0.23.0"
