@@ -39,9 +39,9 @@
     "pretty-bytes": "^5.1.0"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^3.5.0",
     "del-cli": "^1.1.0",
-    "grunt": "^1.0.3",
+    "grunt": "^1.0.4",
     "xo": "^0.23.0"
   },
   "optionalDependencies": {
