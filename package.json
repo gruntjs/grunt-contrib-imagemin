@@ -1,6 +1,6 @@
 {
   "name": "grunt-contrib-imagemin",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "Minify images",
   "license": "MIT",
   "repository": "gruntjs/grunt-contrib-imagemin",
@@ -9,7 +9,7 @@
     "url": "https://gruntjs.com/"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
     "ava": "ava",
@@ -38,10 +38,15 @@
     "plur": "^3.0.1",
     "pretty-bytes": "^5.1.0"
   },
+  "xo": {
+    "rules": {
+      "promise/prefer-await-to-then": false
+    }
+  },
   "devDependencies": {
     "ava": "^1.4.1",
     "del-cli": "^1.1.0",
-    "grunt": "^1.0.4",
+    "grunt": "^1.1.0",
     "xo": "^0.23.0"
   },
   "optionalDependencies": {
