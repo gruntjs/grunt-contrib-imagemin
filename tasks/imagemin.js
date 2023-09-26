@@ -62,10 +62,9 @@ module.exports = grunt => {
 					totalBytes += originalSize;
 					totalSavedBytes += saved;
 					totalFiles++;
+					grunt.file.write(file.dest, optimizedBuf);
+					grunt.verbose.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(` (${msg})`));
 				}
-
-				grunt.file.write(file.dest, optimizedBuf);
-				grunt.verbose.writeln(chalk.green('✔ ') + file.src[0] + chalk.gray(` (${msg})`));
 			})
 			.catch(error => {
 				grunt.warn(`${error} in file ${file.src[0]}`);
